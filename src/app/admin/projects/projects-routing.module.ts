@@ -7,7 +7,7 @@ import { AllprojectsComponent } from "./all-projects/all-projects.component";
 const routes: Routes = [
   {
     // path: "addProject",
-    component: AddprojectsComponent,
+    // component: AddprojectsComponent,
   },
   {
     path: "allProjects",
