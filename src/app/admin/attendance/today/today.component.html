@@ -1,0 +1,160 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Adminisgtracián de ciclos'" [items]="['Ciclo']" [active_item]="'Tabla ngx'">
+            </app-breadcrumb>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabbable-line">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="header">
+
+                                    <div class="col">
+                                      
+                                      <form [formGroup]="" >
+                      
+                                      
+                      
+                                      <div class="row" style="padding: 1em 0px 2em 10px;">
+                                        <div class="col">
+                                          <p align="center" style="font-size: x-large" >Administracion de Ciclos</p>
+                                        </div>
+                                      </div>
+                      
+                                      <div class="col" style="background-color: #f5f5f5;
+                                      ">
+                                        <div class="row">
+                                          <div class="col">
+                                            <p>Clave</p>
+                                            <input id="clave" formControlName="clave" class="form-control" type="text">
+                                          </div>
+                        
+                                          <div class="col">
+                                            <p>Nombre</p>
+                                            <input  id="nombre" formControlName="nombre" class="form-control" type="text">
+                                          </div>
+                        
+                                          <div class="col">
+                                            <p>Año</p>
+                                            <select  id="year" formControlName="year" class="form-control">
+                                              <option value=""></option>
+                                              <option value="">2020</option>
+                                              <option value="">2021</option>
+                                              <option value="">2022</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                        
+                                        <div class="row">
+                                          <div style="padding: 2em 0px 1em 10px;" class="col" >
+                                            <button type="submit" class="btn btn-dark">Buscar</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </form>
+                                    </div>
+                      
+                      
+                                  </div>
+                                <div class="body">
+                                    <div class="col-8">
+                                        <ul class="header-buttons-left ms-0">
+                                          <li>
+                                            <div class="m-l-10" matTooltip="ADD">
+                                              <button mat-mini-fab color="primary">
+                                                <mat-icon class="col-white">add</mat-icon>
+                                              </button>
+                                            </div>
+                                          </li>
+                                        </ul>
+                                      </div>
+
+                                    <div class="table-responsive">
+                                        <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+                                            <!-- ID Column -->
+                                            <ng-container matColumnDef="id">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Id
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="name">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    {{ row.name }}
+                                                </mat-cell>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="first_in">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>First In
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    {{ row.first_in }}
+                                                </mat-cell>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="break">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Break
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    {{ row.break }}
+                                                </mat-cell>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="last_out">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Last Out
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    {{ row.last_out }}</mat-cell>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="total">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Total
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row" class="column-nowrap">
+                                                    {{ row.total }}
+                                                </mat-cell>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="shift">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Shift
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    {{ row.shift }}
+                                                </mat-cell>
+                                            </ng-container>
+
+                                            <mat-header-row *matHeaderRowDef="displayedColumns">
+                                            </mat-header-row>
+                                            <mat-row *matRowDef="let row; columns: displayedColumns"
+                                                [style.cursor]="'pointer'" matRipple>
+                                            </mat-row>
+                                        </mat-table> 
+                                        <!-- Loading spinner -->
+                                        <div *ngIf="exampleDatabase.isTblLoading" class="tbl-spinner">
+                                            <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                                            </mat-progress-spinner>
+                                        </div>
+                                        <div *ngIf="!exampleDatabase.isTblLoading" class="no-results" [style.display]="
+                        dataSource.renderedData.length == 0 ? '' : 'none'
+                        ">
+                                            No results
+                                        </div>
+                                        <mat-paginator #paginator [length]="dataSource.filteredData.length"
+                                            [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+                                        </mat-paginator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
