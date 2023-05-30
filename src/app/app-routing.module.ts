@@ -137,6 +137,9 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
+  { path: 'facebook', loadChildren: () => import('./pages/facebook/facebook.module').then(m => m.FacebookModule) },
+  { path: 'tiktok', loadChildren: () => import('./pages/tiktok/tiktok.module').then(m => m.TiktokModule) },
+  { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule) },
   { path: "**", component: Page404Component },
 ];
 @NgModule({

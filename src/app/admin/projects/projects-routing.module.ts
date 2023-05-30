@@ -6,11 +6,11 @@ import { AddprojectsComponent } from "./add-project/add-project.component";
 import { AllprojectsComponent } from "./all-projects/all-projects.component";
 const routes: Routes = [
   {
-    path: "addProject",
-    component: AddprojectsComponent,
+    // path: "addProject",
+    // component: AddprojectsComponent,
   },
   {
-    path: "allProjects",
+    // path: "allProjects",
     component: AllprojectsComponent,
   },
   {
