@@ -32,6 +32,11 @@ import {
 } from "@angular/common/http";
 
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
+import { AuthModule } from './pages/auth/auth.module';
+import { DialogSigninComponent } from './pages/Dialog/dialog-signin/dialog-signin.component';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { HomeModule } from "./pages/home/home.module";
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -51,8 +56,12 @@ export function createTranslateLoader(http: HttpClient): any {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
+    DialogSigninComponent,
+    
+    
   ],
   imports: [
+    MatAutocompleteModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -70,6 +79,9 @@ export function createTranslateLoader(http: HttpClient): any {
     // core & shared
     CoreModule,
     SharedModule,
+    AuthModule,
+    HomeModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
