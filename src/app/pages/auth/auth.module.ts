@@ -11,9 +11,10 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
-  declarations: [AuthComponent, SigninComponent],
+  declarations: [AuthComponent, SigninComponent, SignupComponent],
   imports: [
     CommonModule,
     FormsModule,
