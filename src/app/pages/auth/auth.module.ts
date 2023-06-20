@@ -11,10 +11,18 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from "./signup/signup.component";
+import { RecoverPasswordComponent } from "./recover-password/recover-password.component";
+import { ChangePasswordComponent } from "./change-password/change-password.component";
 
 @NgModule({
-  declarations: [AuthComponent, SigninComponent, SignupComponent],
+  declarations: [
+    AuthComponent,
+    SigninComponent,
+    SignupComponent,
+    RecoverPasswordComponent,
+    ChangePasswordComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,8 +33,7 @@ import { SignupComponent } from './signup/signup.component';
     MatButtonModule,
     AuthRoutingModule,
     MatBadgeModule,
-    MatDialogModule
-    
+    MatDialogModule,
   ],
 })
 export class AuthModule {}
