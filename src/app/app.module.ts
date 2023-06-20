@@ -36,6 +36,7 @@ import { AuthModule } from './pages/auth/auth.module';
 import { DialogSigninComponent } from './pages/Dialog/dialog-signin/dialog-signin.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { HomeModule } from "./pages/home/home.module";
+import { DialogSignupComponent } from './pages/Dialog/dialog-signup/dialog-signup.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -57,6 +58,7 @@ export function createTranslateLoader(http: HttpClient): any {
     AuthLayoutComponent,
     MainLayoutComponent,
     DialogSigninComponent,
+    DialogSignupComponent,
     
     
   ],
