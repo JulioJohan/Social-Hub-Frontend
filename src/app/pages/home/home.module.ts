@@ -11,9 +11,10 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
+import { SelectComponent } from "./select/select.component";
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent],
+  declarations: [HomeComponent, HeaderComponent, SelectComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -23,7 +24,8 @@ import { MatButtonModule } from "@angular/material/button";
     MatIconModule,
     MatBadgeModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    
   ],
 })
 export class HomeModule {}
