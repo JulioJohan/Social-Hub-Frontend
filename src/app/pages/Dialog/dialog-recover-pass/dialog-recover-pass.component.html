@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body style="background-color: white">
+    <div class="contenedor">
+      <button
+        class="elemento"
+        mat-mini-fab
+        color="secondary"
+        (click)="closeDialog()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <h3 class="text-center text">Código de recuperación</h3>
+    <form [formGroup]="codeAuthForm">
+      <div class="input-group">
+        <input type="text" formControlName="code1" maxlength="1" />
+        <input type="text" formControlName="code2" maxlength="1" />
+        <input type="text" formControlName="code3" maxlength="1" />
+        <input type="text" formControlName="code4" maxlength="1" />
+        <input type="text" formControlName="code5" maxlength="1" />
+      </div>
+    </form>
+    <h6 class="text-Justified">
+      Ingresa el código enviado a tu correo electrónico para recuperar tu
+      contraseña
+    </h6>
+  </body>
+</html>

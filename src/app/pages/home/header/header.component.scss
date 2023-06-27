@@ -1,0 +1,14 @@
+@media (max-width: 767px) {
+    .menu{
+      display: none;
+    }
+    .menuC{
+        display: block;
+      }
+  }
+
+  @media (min-width: 768px) {
+    .menuC{
+        display: none;
+      }
+  }
