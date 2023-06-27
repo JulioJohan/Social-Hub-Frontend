@@ -11,6 +11,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
+import { FacebookModule } from "../facebook/facebook.module";
 
 @NgModule({
   declarations: [HomeComponent, HeaderComponent],
@@ -23,7 +24,8 @@ import { MatButtonModule } from "@angular/material/button";
     MatIconModule,
     MatBadgeModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    FacebookModule
   ],
 })
 export class HomeModule {}
