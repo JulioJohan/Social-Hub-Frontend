@@ -11,10 +11,12 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
+import { SelectComponent } from "./select/select.component";
 import { FacebookModule } from "../facebook/facebook.module";
 
+
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent],
+  declarations: [HomeComponent, HeaderComponent, SelectComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -25,6 +27,7 @@ import { FacebookModule } from "../facebook/facebook.module";
     MatBadgeModule,
     MatDialogModule,
     MatButtonModule,
+    SeleccionModulos
     FacebookModule
   ],
 })
