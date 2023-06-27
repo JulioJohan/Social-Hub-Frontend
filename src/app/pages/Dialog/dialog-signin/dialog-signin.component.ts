@@ -28,11 +28,12 @@ export class DialogSigninComponent implements OnInit {
 
   checkFormCompletion() {
     if (this.codeAuthForm.valid) {
-      this.router.navigateByUrl("/home")
       this.closeDialog()
+      this.router.navigateByUrl("/home")
     } 
   }
   closeDialog(){
     this.matDialogRef.close()
+    
   }
 }

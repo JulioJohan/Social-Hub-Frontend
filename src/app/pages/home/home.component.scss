@@ -9,8 +9,31 @@
   height: 93vh;
   background-color: white;
 }
+
   
   .inicio-animacion {
     transition: width 0.5s ease;
   }
   
+
+
+.inicio-animacion {
+  transition: width 0.5s ease;
+}
+.bcw{
+  background-color: white;
+}
+.menuC{
+  display: none;
+}
+@media (max-width: 767px) {
+  .menu{
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .menuCe{
+    display: none;
+  }
+}
+

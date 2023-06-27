@@ -8,7 +8,7 @@
         <div class="form-section">
           <div class="auth-wrapper">
             <h1 class="welcome-msg text text-center"> Iniciar sesión </h1>
-            <p class="auth-signup-text text-muted">¿Necesita una cuenta?<a routerLink="/authentication/signup"
+            <p class="auth-signup-text text-muted">¿Necesita una cuenta?<a routerLink="/auth/signup"
                 class="sign-up-link">Registrarse
               </a></p>
             <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
@@ -41,7 +41,7 @@
               <div class="d-flex justify-content-between align-items-center mb-5">
                 <div class="form-check">
                 </div>
-                <a class="txt1" routerLink="/authentication/forgot-password">¿Has olvidado tu contraseña?</a>
+                <a class="txt1" routerLink="/auth/recover-pass">¿Has olvidado tu contraseña?</a>
               </div>
               <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
               <div class="container-auth-form-btn">
