@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head> </head>
-  <body style="background-color: white">
+  <body style="background-color: white" class="text">
     <div class="contenedor">
       <button
         class="elemento"
@@ -14,15 +14,80 @@
     </div>
     <h3 class="text-center text">Código de recuperación</h3>
     <form [formGroup]="codeAuthForm">
-      <div class="input-group">
-        <input type="text" formControlName="code1" maxlength="1" />
-        <input type="text" formControlName="code2" maxlength="1" />
-        <input type="text" formControlName="code3" maxlength="1" />
-        <input type="text" formControlName="code4" maxlength="1" />
-        <input type="text" formControlName="code5" maxlength="1" />
+      <div class="row align-items-center contenInputCode">
+        <div class="col">
+          <input
+            #code1Input
+            [ngClass]="requerido('code1')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code1"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code1Input, code2Input)"
+            (keydown.backspace)="handleBackspace($event, null, code1Input)"
+          />
+        </div>
+        <div class="col">
+          <input
+            #code2Input
+            [ngClass]="requerido('code2')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code2"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code2Input, code3Input)"
+            (keydown.backspace)="
+              handleBackspace($event, code1Input, code2Input)
+            "
+          />
+        </div>
+        <div class="col">
+          <input
+            #code3Input
+            [ngClass]="requerido('code3')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code3"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code3Input, code4Input)"
+            (keydown.backspace)="
+              handleBackspace($event, code2Input, code3Input)
+            "
+          />
+        </div>
+        <div class="col">
+          <input
+            #code4Input
+            [ngClass]="requerido('code4')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code4"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code4Input, code5Input)"
+            (keydown.backspace)="
+              handleBackspace($event, code3Input, code4Input)
+            "
+          />
+        </div>
+        <div class="col">
+          <input
+            #code5Input
+            [ngClass]="requerido('code5')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code5"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code5Input, null)"
+            (keydown.backspace)="
+              handleBackspace($event, code4Input, code5Input)
+            "
+          />
+        </div>
       </div>
     </form>
-    <h6 class="text-Justified">
+
+    <p class="menssageError">{{ textErrorCode }}</p>
+    <h6 class="text-Justified mt-3">
       Ingresa el código enviado a tu correo electrónico para recuperar tu
       contraseña
     </h6>
