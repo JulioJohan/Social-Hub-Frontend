@@ -10,30 +10,51 @@
   background-color: white;
 }
 
-  
-  .inicio-animacion {
-    transition: width 0.5s ease;
-  }
-  
-
+.inicio-animacion {
+  transition: width 0.5s ease;
+}
 
 .inicio-animacion {
   transition: width 0.5s ease;
 }
-.bcw{
+.bcw {
   background-color: white;
 }
-.menuC{
+.menuC {
   display: none;
 }
 @media (max-width: 767px) {
-  .menu{
+  .menu {
     display: none;
   }
 }
 @media (min-width: 768px) {
-  .menuCe{
+  .menuCe {
     display: none;
   }
 }
+.imOrVideoP {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 60%;
+  height: auto;
 
+}
+.wind {
+  overflow: auto;
+  margin-top: 20px;
+}
+.logoNetworks{
+  width: 70px;
+  height: auto;
+ 
+}
+.textLogo{
+ font-size: 25px;
+}
+
+.contLogoNet:hover{
+  background-color: rgba(169, 169, 169, 0.76);
+  cursor: pointer;
+}

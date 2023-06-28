@@ -5,6 +5,10 @@ import { AuthGuard } from "./core/guard/auth.guard";
 import { Role } from "./core/models/role";
 import { AuthLayoutComponent } from "./layout/app-layout/auth-layout/auth-layout.component";
 import { MainLayoutComponent } from "./layout/app-layout/main-layout/main-layout.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { SelectComponent } from "./pages/home/select/select.component";
+import { FacebookComponent } from "./pages/facebook/facebook.component";
+import { TiktokComponent } from "./pages/tiktok/tiktok.component";
 
 const routes: Routes = [
   // {
@@ -139,14 +143,36 @@ const routes: Routes = [
   //     ),
   // },
   {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "auth",
+    pathMatch: "full",
   },
-  { path: 'auth', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
-  { path: 'facebook', loadChildren: () => import('./pages/facebook/facebook.module').then(m => m.FacebookModule) },
-  { path: 'tiktok', loadChildren: () => import('./pages/tiktok/tiktok.module').then(m => m.TiktokModule) },
-  { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
+  {
+    path: "auth",
+    loadChildren: () =>
+      import("./pages/auth/auth.module").then((m) => m.AuthModule),
+  },
+  {
+    path: "facebook",
+    loadChildren: () =>
+      import("./pages/facebook/facebook.module").then((m) => m.FacebookModule),
+  },
+  {
+    path: "tiktok",
+    loadChildren: () =>
+      import("./pages/tiktok/tiktok.module").then((m) => m.TiktokModule),
+  },
+
+  {
+    path: "home",
+    component: HomeComponent,
+    children: [
+      { path: "", redirectTo: "select", pathMatch: "full" },
+      { path: "select", component: SelectComponent },
+      { path: "bookface", component: FacebookComponent },
+      { path: "toktik", component: TiktokComponent },
+    ],
+  },
   { path: "**", component: Page404Component },
 ];
 @NgModule({

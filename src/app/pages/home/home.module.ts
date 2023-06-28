@@ -13,6 +13,7 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
 import { SelectComponent } from "./select/select.component";
 import { FacebookModule } from "../facebook/facebook.module";
+import { TiktokModule } from "../tiktok/tiktok.module";
 
 
 @NgModule({
@@ -27,8 +28,8 @@ import { FacebookModule } from "../facebook/facebook.module";
     MatBadgeModule,
     MatDialogModule,
     MatButtonModule,
-    SeleccionModulos
-    FacebookModule
+    FacebookModule,
+    TiktokModule
   ],
 })
 export class HomeModule {}

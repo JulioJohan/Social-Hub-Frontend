@@ -1,17 +1,61 @@
 <div class="conteiner" style="overflow-x: hidden;">
   <mat-toolbar>
     <app-header></app-header>
+    
   </mat-toolbar>
   <div class="row"  >
     <div class="col-1 menu" [ngClass]="openMenu ? 'c1' : 'c2'" [class.inicio-animacion]="iniciarAnimacion" 
     style="position: fixed">
-      One
+      <div routerLink="/home/toktik" class="row d-flex align-items-center justify-content-center contLogoNet" >
+        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
+          <img
+            src="assets/images/BT.png "
+            class="rounded d-block imOrVideoP"
+          />
+        </div>
+        <div [hidden]="!openMenu" class="col textLogo">
+          Bookface
+        </div>
+      </div>
+      <div routerLink="/home/bookface" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
+        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
+          <img
+            src="assets/images/BF.png "
+            class="rounded d-block imOrVideoP"
+          />
+        </div>
+        <div [hidden]="!openMenu" class="col textLogo">
+          Bookface
+        </div>
+      </div>
     </div>
     <div class="col-1 menuCe" [ngClass]="openMenu ? ' menuC' : 'c1'" [class.inicio-animacion]="iniciarAnimacion" 
     style="position: fixed">
-      One
+    <div routerLink="/home/toktik" class="row d-flex align-items-center justify-content-center contLogoNet" >
+      <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
+        <img
+          src="assets/images/BT.png "
+          class="rounded d-block imOrVideoP"
+        />
+      </div>
+      <div class="col textLogo">
+        Bookface
+      </div>
     </div>
-    <div class="col "style="height: 99%; overflow: auto">
+    <div routerLink="/home/bookface" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
+      <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
+        <img
+          src="assets/images/BF.png "
+          class="rounded d-block imOrVideoP"
+        />
+      </div>
+      <div  class="col textLogo">
+        Bookface
+      </div>
+    </div>
+    </div>
+    <div class="col wind">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
