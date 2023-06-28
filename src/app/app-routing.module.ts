@@ -9,6 +9,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { SelectComponent } from "./pages/home/select/select.component";
 import { FacebookComponent } from "./pages/facebook/facebook.component";
 import { TiktokComponent } from "./pages/tiktok/tiktok.component";
+import { PublicationsComponent } from "./pages/facebook/publications/publications.component";
 
 const routes: Routes = [
   // {
@@ -152,16 +153,6 @@ const routes: Routes = [
     loadChildren: () =>
       import("./pages/auth/auth.module").then((m) => m.AuthModule),
   },
-  {
-    path: "facebook",
-    loadChildren: () =>
-      import("./pages/facebook/facebook.module").then((m) => m.FacebookModule),
-  },
-  {
-    path: "tiktok",
-    loadChildren: () =>
-      import("./pages/tiktok/tiktok.module").then((m) => m.TiktokModule),
-  },
 
   {
     path: "home",
@@ -169,7 +160,14 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "select", pathMatch: "full" },
       { path: "select", component: SelectComponent },
-      { path: "bookface", component: FacebookComponent },
+      {
+        path: "bookface",
+        component: FacebookComponent,
+        children: [
+          { path: "", redirectTo: "public", pathMatch: "full" },
+          { path: "public", component: PublicationsComponent },
+        ],
+      },
       { path: "toktik", component: TiktokComponent },
     ],
   },

@@ -1,5 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 
@@ -10,15 +15,22 @@ import { Router } from "@angular/router";
 })
 export class DialogSigninComponent implements OnInit {
   codeAuthForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,private router:Router, private matDialogRef:MatDialogRef<DialogSigninComponent>) {}
+  fields: FormControl[];
+  errorInput: boolean = false;
+  textErrorCode = "";
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private matDialogRef: MatDialogRef<DialogSigninComponent>
+  ) {}
 
   ngOnInit(): void {
     this.codeAuthForm = this.formBuilder.group({
-      code1: ["", Validators.required],
-      code2: ["", Validators.required],
-      code3: ["", Validators.required],
-      code4: ["", Validators.required],
-      code5: ["", Validators.required],
+      code1: ["", [Validators.required, Validators.pattern(/^\d+$/)]],
+      code2: ["", [Validators.required, Validators.pattern(/^\d+$/)]],
+      code3: ["", [Validators.required, Validators.pattern(/^\d+$/)]],
+      code4: ["", [Validators.required, Validators.pattern(/^\d+$/)]],
+      code5: ["", [Validators.required, Validators.pattern(/^\d+$/)]],
     });
 
     this.codeAuthForm.valueChanges.subscribe(() => {
@@ -28,12 +40,69 @@ export class DialogSigninComponent implements OnInit {
 
   checkFormCompletion() {
     if (this.codeAuthForm.valid) {
-      this.closeDialog()
-      this.router.navigateByUrl("/home")
+      this.closeDialog();
+      this.router.navigateByUrl("/home");
+      this.errorInput = false;
+      this.textErrorCode = " ";
+    } else {
+      this.errorInput = true;
+      this.textErrorCode = "Agrega los 5 dígitos del código ";
+    }
+  }
+  closeDialog() {
+    this.matDialogRef.close();
+  }
+  handlePaste(event: ClipboardEvent) {
+    const clipboardData = event.clipboardData;
+    const pastedText = clipboardData.getData("text");
+
+    // Verificar si el texto pegado solo contiene números
+    if (/^\d+$/.test(pastedText) && pastedText.length === 5) {
+      // Rellenar los campos del formulario
+      this.codeAuthForm.patchValue({
+        code1: pastedText.charAt(0),
+        code2: pastedText.charAt(1),
+        code3: pastedText.charAt(2),
+        code4: pastedText.charAt(3),
+        code5: pastedText.charAt(4),
+      });
     } 
   }
-  closeDialog(){
-    this.matDialogRef.close()
-    
+  handleInput(
+    currentInput: HTMLInputElement,
+    nextInput: HTMLInputElement | null
+  ) {
+    const inputValue = currentInput.value;
+
+    if (inputValue.length === 1 && nextInput) {
+      nextInput.focus();
+    }
+  }
+
+  handleBackspace(
+    event: KeyboardEvent,
+    prevInput: HTMLInputElement | null,
+    currentInput: HTMLInputElement
+  ) {
+    if (currentInput.value === "") {
+      event.preventDefault();
+      if (prevInput) {
+        prevInput.focus();
+      }
+    }
+  }
+
+  requerido(id: string): boolean {
+    if (this.errorInput) {
+      const control = this.codeAuthForm.get(id);
+      const hasValue =
+        control && control.value !== null && control.value !== "";
+      if (hasValue) {
+        const hasRequiredError = control?.hasError("required");
+        const hasPatternError = control?.hasError("pattern");
+        return !hasRequiredError && !hasPatternError;
+      } 
+    }
+    return true;
   }
 }
