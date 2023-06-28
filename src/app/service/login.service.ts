@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { User } from '../models/user';
-import jwt_decode from 'jwt-decode';
+
 import { Router } from '@angular/router';
 import { Respuesta } from '../models/respuesta';
 
