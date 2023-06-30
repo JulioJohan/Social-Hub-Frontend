@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { User } from '../models/user';
 
 import { Router } from '@angular/router';
 import { Respuesta } from '../models/respuesta';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class LoginService {
   // Contructor para para la comunicación en el back ademas del router para derigirse a otra pagina
   constructor(private http: HttpClient, private router: Router) { }
 
-  public url: string = 'http://localhost:3000/api'
+  public url: string = environment.servLogin
   // public fechaExpiracion: any;
 
   public guardarLocalStorage(token: string) {
@@ -29,8 +30,8 @@ export class LoginService {
   }
 
   // Comunicación para guardar el usuario con node
-  public createUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.url}/users/createUser`, user);
+  public createUser(user: User):  Observable<HttpResponse<any>> {
+    return this.http.post<User>(`${this.url}/users/createUser`, user,{observe: 'response'});
   }
 
     // Comunicación para actualizar el usuario con node
