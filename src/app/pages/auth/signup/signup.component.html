@@ -1,81 +1,130 @@
 <div class="auth-container">
-    <div class="row auth-main">
-      <div class="col-sm-6 px-0 d-none d-sm-block">
-        <div class="left-img" style="background-image: url(assets/images/pages/SH.png);">
+  <div class="row auth-main">
+    <div class="col-sm-6 px-0 d-none d-sm-block">
+      <div
+        class="left-img"
+        style="background-image: url(assets/images/pages/SH.png)"
+      ></div>
+    </div>
+    <div class="col-sm-6 auth-form-section text">
+      <div class="form-section">
+        <div class="auth-wrapper">
+          <h1 class="welcome-msg text-center">Inscripción</h1>
+          <p class="auth-signup-text text-muted">
+            llenar todo el formulario para realisar tu inscripción
+          </p>
+          <form
+            class="validate-form"
+            [formGroup]="authForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Nombre del usuario</mat-label>
+                  <input matInput formControlName="username" required />
+                  <mat-error
+                    *ngIf="authForm.get('username').hasError('required')"
+                  >
+                    El nombre del usuario es requerido
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" required />
+                  <mat-error
+                    *ngIf="
+                      authForm.get('email').hasError('required') ||
+                      authForm.get('email').touched
+                    "
+                  >
+                    Por favor, introduce una dirección de correo electrónico
+                    válida
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Contraseña</mat-label>
+                  <input
+                    matInput
+                    formControlName="password"
+                    [type]="hide ? 'password' : 'text'"
+                    required
+                  />
+                  <mat-icon matSuffix (click)="hide = !hide">
+                    {{ hide ? "visibility_off" : "visibility" }}
+                  </mat-icon>
+                  <mat-error
+                    *ngIf="authForm.get('password').hasError('required')"
+                  >
+                    La contraseña es requeridad
+                  </mat-error>
+                  <mat-error
+                    *ngIf="authForm.get('password').hasError('invalidPassword')"
+                  >
+                    La contraseña debe cumplir con los siguientes requisitos: Al
+                    menos una letra mayúscula o minúscula. Al menos un dígito.
+                    Al menos un carácter especial de los siguientes: @, $, !, %,
+                    *, #, ? o &. Debe tener una longitud mínima de 8 caracteres.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Confirma tu contraseña</mat-label>
+                  <input
+                    matInput
+                    formControlName="cpassword"
+                    [type]="hide ? 'password' : 'text'"
+                    required
+                  />
+                  <mat-icon matSuffix (click)="hide = !hide">
+                    {{ hide ? "visibility_off" : "visibility" }}
+                  </mat-icon>
+                  <mat-error
+                    *ngIf="authForm.get('cpassword').hasError('required')"
+                  >
+                    Confirmar contraseña es requerida
+                  </mat-error>
+                  <mat-error
+                    *ngIf="authForm.get('password').hasError('invalidPassword')"
+                  >
+                    Las contraseñas no coinciden
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="flex-sb-m w-full p-b-20">
+              <div>
+                <span
+                  >¿Ya estás registrado?
+                  <a routerLink="/auth/signin">Acceder</a></span
+                >
+              </div>
+            </div>
+            <div class="container-auth-form-btn">
+              <button
+                mat-flat-button
+                color="primary"
+                class="auth-form-btn"
+                [disabled]="!authForm.valid"
+                type="submit"
+              >
+                Registrarse
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="col-sm-6 auth-form-section text">
-        <div class="form-section">
-          <div class="auth-wrapper">
-            <h1 class="welcome-msg text-center"> Inscripción </h1>
-            <p class="auth-signup-text text-muted">llenar todo el formulario para realisar tu inscripción</p>
-            <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
-                <div class="row">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Nombre completo</mat-label>
-                      <input matInput formControlName="username" required>
-                      <mat-error *ngIf="authForm.get('username').hasError('required')">
-                        Username is required
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Email</mat-label>
-                      <input matInput formControlName="email" required>
-                      <mat-error *ngIf="authForm.get('email').hasError('required') || authForm.get('email').touched">
-                        Please enter a valid email address
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Contraseña</mat-label>
-                      <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required >
-                      <mat-icon matSuffix (click)="hide = !hide">
-                        {{ hide ? 'visibility_off' : 'visibility' }}
-                      </mat-icon>
-                      <mat-error *ngIf="authForm.get('password').hasError('required') ">
-                        Password is required
-                      </mat-error>
-                      
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Confirma tu contraseña</mat-label>
-                      <input matInput formControlName="cpassword" [type]="hide ? 'password' : 'text'" required>
-                      <mat-icon matSuffix (click)="hide = !hide">
-                        {{ hide ? 'visibility_off' : 'visibility' }}
-                      </mat-icon>
-                      <mat-error *ngIf="authForm.get('cpassword').hasError('required')">
-                        Confirm Password is required
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="flex-sb-m w-full p-b-20">
-                  <div>
-                    <span>¿Ya estás registrado? <a routerLink="/auth/signin">Acceder</a></span>
-                  </div>
-                </div>
-                <div class="container-auth-form-btn">
-                  <button mat-flat-button color="primary" class="auth-form-btn" [disabled]="!authForm.valid" type="submit">
-                    Registrarse
-                  </button>
-                </div>
-              </form>
-          </div>
-        </div>
-      </div>
-  
     </div>
   </div>
-  
+</div>
