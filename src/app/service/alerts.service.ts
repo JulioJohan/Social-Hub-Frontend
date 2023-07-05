@@ -6,20 +6,23 @@ import Swal from "sweetalert2"
   })
   export class AlertsService {
   
-    constructor() { }
-
+    // Alerta para el exito de un proceso
     public static succesMessage(title:string,message:string){
       Swal.close();
-      Swal.fire({
+      // Creación de la alerta 
+      Swal.fire({      
         icon: 'success',
         title:title,        
         text: message,
         showConfirmButton: false,
         timer:2000
-      })        }
+      })        
+    }
 
+    // Alerta para un error de un proceso
     public static errorMessage(title:string,message:string){
       Swal.close();
+      // Creación de la alerta 
       Swal.fire({
         icon: 'error',
         title:title,        
@@ -29,8 +32,10 @@ import Swal from "sweetalert2"
       })    
     }
 
+    // Alerta para un advertir de un proceso
     public static warningMessage(mensaje:string){
       Swal.close();
+      // Creación de la alerta 
       Swal.fire({
         icon: 'warning',
         text: mensaje,
