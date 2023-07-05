@@ -12,6 +12,7 @@ import { TiktokComponent } from './tiktok.component';
   imports: [
     CommonModule,
     TiktokRoutingModule
-  ]
+  ],
+  exports:[TiktokComponent]
 })
 export class TiktokModule { }

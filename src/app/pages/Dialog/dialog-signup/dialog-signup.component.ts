@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class DialogSignupComponent implements OnInit {
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: string,
     private matDialogRef:MatDialogRef<DialogSignupComponent>,
     private router:Router
   ) { }
@@ -18,7 +19,7 @@ export class DialogSignupComponent implements OnInit {
     setTimeout(() => {
       this.closeDialog()
       
-    }, 10000);
+    }, 5000);
   }
   closeDialog(){
     this.matDialogRef.close()

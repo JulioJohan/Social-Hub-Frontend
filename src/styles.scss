@@ -10,7 +10,8 @@
   }
   @media (max-width: 600px) {
     .full-screen-dialog .mat-dialog-container {
-      height: 100vh;
+      height: 100%;
       width: 100vw;
+
     }
   }
