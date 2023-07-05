@@ -30,8 +30,8 @@ export class LoginService {
   }
 
   // Comunicación para guardar el usuario con node
-  public createUser(user: User):  Observable<HttpResponse<any>> {
-    return this.http.post<User>(`${this.url}/users/createUser`, user,{observe: 'response'});
+  public createUser(user: User):  Observable<Respuesta> {
+    return this.http.post<Respuesta>(`${this.url}/users/createUser`, user);
   }
 
     // Comunicación para actualizar el usuario con node

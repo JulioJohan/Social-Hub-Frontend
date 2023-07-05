@@ -14,6 +14,8 @@ import { LoginService } from "src/app/service/login.service";
 import { DialogSignupErrorComponent } from "../../Dialog/dialog-signup-error/dialog-signup-error.component";
 import {HttpResponse } from "@angular/common/http";
 import { ErroresService } from "src/app/service/errores.service";
+import { Respuesta } from "src/app/models/respuesta";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-signup",
@@ -89,20 +91,20 @@ export class SignupComponent implements OnInit {
     // stop here if form is invalid
     if (this.authForm.valid) {
       const newUser = this.getFormData()
-      this.servSignup.createUser(newUser).subscribe((response: HttpResponse<any>)=>{
-        
-        this.openDialog(response.body.msg)
-      },
-      (error) => {
-        
-        const msg = this.erres.error(error)
-        this.openDialogError(msg)
+      console.log(newUser)
+      this.servSignup.createUser(newUser).subscribe(data=>{
+        if(data.ok){
 
-      })
-      
-    } 
-  }
+          return Swal.fire('',data.msg,'success');
+        }else {
 
+          return Swal.fire('',data.msg,'error');
+        }         
+      })               
+          
+    }
+  }   
+  
   // Metodo que nos permite mostrar el dialogo de confirmacion
   openDialog(msg:string){
     const dialogConfig: MatDialogConfig<any> = {
