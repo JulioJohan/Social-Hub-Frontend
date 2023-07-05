@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body style="background-color: white" class="text">
+    <div class="contenedor">
+      <button
+        class="elemento"
+        mat-mini-fab
+        color="secondary"
+        (click)="closeDialog()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <h3 class="text-center text">Código de acceso</h3>
+    <form [formGroup]="codeAuthForm">
+      <div class="row align-items-center contenInputCode">
+        <div class="col">
+          <input
+            [ngClass]="requerido('code1')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code1"
+            maxlength="8"
+          />
+        </div>
+
+      </div>
+    </form>
+
+    <p class="menssageError">{{ textErrorCode }}</p>
+    <h6 class="text-Justified mt-3">
+      Ingresa el codigo enviado a tu correo electronico para acceder a tus redes
+      sociales
+    </h6>
+  </body>
+</html>
