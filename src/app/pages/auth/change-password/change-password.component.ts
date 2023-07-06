@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DialogChangePassComponent } from '../../Dialog/dialog-change-pass/dialog-change-pass.component';
-
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -45,16 +43,9 @@ export class ChangePasswordComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.authForm.valid) {
-      this.openDialog()
+      
     } 
   }
 
-  openDialog(){
-    const dialogConfig: MatDialogConfig<any> = {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      panelClass: 'full-screen-dialog',
-    };
-    this.matDialog.open(DialogChangePassComponent,dialogConfig)
-  }
+
 }

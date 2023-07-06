@@ -4,7 +4,7 @@ import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/service/auth.service";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
-import { DialogSigninComponent } from "../../Dialog/dialog-signin/dialog-signin.component";
+import { DialogSigninComponent } from "../../dialogs/dialog-signin/dialog-signin.component";
 
 @Component({
   selector: "app-signin",
@@ -51,12 +51,12 @@ export class SigninComponent
     this.authForm.get("password").setValue("client@123");
   }
   onSubmit() {
-    this.submitted = true;
-    this.loading = true;
+    // this.submitted = true;
+    // this.loading = true;
 
-    this.openDialogC()
+    // this.openDialogC()
 
-    this.loading = false;
+    // this.loading = false;
   }
 
   //Open dialogo de code signin
