@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/service/auth.service";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { DialogSigninComponent } from "../../Dialog/dialog-signin/dialog-signin.component";
+import { LoginService } from '../../../service/login.service';
+import { AlertsService } from '../../../service/alerts.service';
 
 @Component({
   selector: "app-signin",
@@ -24,39 +26,61 @@ export class SigninComponent
     private formBuilder: FormBuilder,
     private matDialog: MatDialog ,
     private router: Router,
+    private loginService:LoginService,
+    private alertsService:AlertsService
     
   ) {
     super();
   }
 
+  emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      username: ["admin@software.com", Validators.required],
-      password: ["admin@123", Validators.required],
+      email: ["", [Validators.required,Validators.email, Validators.pattern(this.emailPattern)]],
+      password: ["", Validators.required],
     });
   }
   get f() {
     return this.authForm.controls;
   }
-  adminSet() {
-    this.authForm.get("username").setValue("admin@software.com");
-    this.authForm.get("password").setValue("admin@123");
-  }
-  employeeSet() {
-    this.authForm.get("username").setValue("employee@software.com");
-    this.authForm.get("password").setValue("employee@123");
-  }
-  clientSet() {
-    this.authForm.get("username").setValue("client@software.com");
-    this.authForm.get("password").setValue("client@123");
-  }
+  // adminSet() {
+  //   this.authForm.get("username").setValue("admin@software.com");
+  //   this.authForm.get("password").setValue("admin@123");
+  // }
+  // employeeSet() {
+  //   this.authForm.get("username").setValue("employee@software.com");
+  //   this.authForm.get("password").setValue("employee@123");
+  // }
+  // clientSet() {
+  //   this.authForm.get("username").setValue("client@software.com");
+  //   this.authForm.get("password").setValue("client@123");
+  // }
   onSubmit() {
+    // Estas variables son para que se muestre el spiner
     this.submitted = true;
     this.loading = true;
 
-    this.openDialogC()
+    // Nos comunicamos con el backend
+    this.loginService.login(this.authForm.value.email, this.authForm.value.password).subscribe(data=>{
+      console.log(data)
+      if(!data.ok){
+        this.alertsService.warningMessage(data.msg);
+        this.loading = false;
+        return;
+      }
+      if(data.ok){
+        this.alertsService.succesMessage('El código de verificación se envio a tu correo!',data.msg);
+        this.loading = false;
+        this.openDialogC()  
+      }
+      this.loading = false;
+  },error =>{
+    console.log(error)
+  })
+  // this.openDialogC()  
 
-    this.loading = false;
   }
 
   //Open dialogo de code signin
@@ -67,6 +91,7 @@ export class SigninComponent
       panelClass: 'full-screen-dialog',
     };
     dialogConfig.disableClose = true;
+    dialogConfig.data = this.authForm.value;
     // Example usage
     this.matDialog.open(DialogSigninComponent, dialogConfig);
   }

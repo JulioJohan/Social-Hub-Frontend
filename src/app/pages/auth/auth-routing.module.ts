@@ -5,6 +5,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ConfirmAccountComponent } from './confirm-account/confirm-account.component';
 
 const routes: Routes = [
   
@@ -21,12 +22,15 @@ const routes: Routes = [
     path: 'signup',
     component: SignupComponent
   },
+  { path: 'confirm/:emailVerified', 
+    component:ConfirmAccountComponent
+  }, 
   {
     path: 'recover-pass',
     component: RecoverPasswordComponent
   },
   {
-    path: 'change-pass',
+    path: 'change-pass/:tokenPassword',
     component: ChangePasswordComponent
   },
   ];

@@ -7,7 +7,7 @@ import Swal from "sweetalert2"
   export class AlertsService {
   
     // Alerta para el exito de un proceso
-    public static succesMessage(title:string,message:string){
+    public succesMessage(title:string,message:string){
       Swal.close();
       // Creación de la alerta 
       Swal.fire({      
@@ -20,7 +20,7 @@ import Swal from "sweetalert2"
     }
 
     // Alerta para un error de un proceso
-    public static errorMessage(title:string,message:string){
+    public errorMessage(title:string,message:string){
       Swal.close();
       // Creación de la alerta 
       Swal.fire({
@@ -33,7 +33,7 @@ import Swal from "sweetalert2"
     }
 
     // Alerta para un advertir de un proceso
-    public static warningMessage(mensaje:string){
+    public warningMessage(mensaje:string){
       Swal.close();
       // Creación de la alerta 
       Swal.fire({

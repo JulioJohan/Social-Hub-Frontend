@@ -77,10 +77,49 @@
             formControlName="code5"
             maxlength="1"
             (paste)="handlePaste($event)"
-            (input)="handleInput(code5Input, null)"
+            (input)="handleInput(code5Input, code6Input)"
             (keydown.backspace)="
               handleBackspace($event, code4Input, code5Input)
             "
+          />
+        </div>
+        <div class="col">
+          <input
+            #code6Input
+            [ngClass]="requerido('code6')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code6"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code6Input, code7Input)"
+            (keydown.backspace)="
+              handleBackspace($event, code5Input, code6Input)"
+          />
+        </div>
+        <div class="col">
+          <input
+            #code7Input
+            [ngClass]="requerido('code7')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code7"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code7Input, code8Input)"
+            (keydown.backspace)="
+              handleBackspace($event, code6Input, code7Input)"
+          />
+        </div>
+        <div class="col">
+          <input
+            #code8Input
+            [ngClass]="requerido('code8')? 'inputSucetfull': 'inputError'"
+            type="text"
+            formControlName="code8"
+            maxlength="1"
+            (paste)="handlePaste($event)"
+            (input)="handleInput(code8Input, null)"
+            (keydown.backspace)="
+              handleBackspace($event, code7Input, code8Input)"
           />
         </div>
       </div>
