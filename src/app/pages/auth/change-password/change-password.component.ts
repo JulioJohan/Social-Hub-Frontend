@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+<<<<<<< HEAD
 import { DialogChangePassComponent } from '../../Dialog/dialog-change-pass/dialog-change-pass.component';
 import { LoginService } from '../../../service/login.service';
 import { AlertsService } from '../../../service/alerts.service';
 import { Observable } from 'rxjs';
 
+=======
+>>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -96,6 +99,7 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
+<<<<<<< HEAD
     if (this.authForm.valid) {   
       // Enviamos la peticion al back 
       this.loginService.newPassword(this.tokenPassword,this.authForm.value).subscribe(data=>{
@@ -105,15 +109,12 @@ export class ChangePasswordComponent implements OnInit {
         }
       })      
       // this.openDialog()
+=======
+    if (this.authForm.valid) {
+      
+>>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4
     } 
   }
 
-  openDialog(){
-    const dialogConfig: MatDialogConfig<any> = {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      panelClass: 'full-screen-dialog',
-    };
-    this.matDialog.open(DialogChangePassComponent,dialogConfig)
-  }
+
 }

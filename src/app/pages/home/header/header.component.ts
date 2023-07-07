@@ -19,7 +19,7 @@ const document: any = window.document;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent extends UnsubscribeOnDestroyAdapter
+export class HeaderComponent
 implements OnInit, AfterViewInit
 {
 public config: any = {};
@@ -42,7 +42,7 @@ constructor(
   private serviseMenu:MenuService,
   public languageService: LanguageService
 ) {
-  super();
+
 }
 listLang = [
   { text: "English", flag: "assets/images/flags/us.jpg", lang: "en" },
@@ -101,30 +101,7 @@ notifications: any[] = [
   },
 ];
 ngOnInit() {
-  this.config = this.configService.configData;
-  const userRole = this.authService.currentUserValue.role;
-  this.userImg = this.authService.currentUserValue.img;
-
-  if ("Admin" === "Admin") {
-    this.homePage = "admin/dashboard/main";
-  } else if (userRole === "Client") {
-    this.homePage = "client/dashboard";
-  } else if (userRole === "Employee") {
-    this.homePage = "employee/dashboard";
-  } else {
-    this.homePage = "admin/dashboard/main";
-  }
-
-  this.langStoreValue = localStorage.getItem("lang");
-  const val = this.listLang.filter((x) => x.lang === this.langStoreValue);
-  this.countryName = val.map((element) => element.text);
-  if (val.length === 0) {
-    if (this.flagvalue === undefined) {
-      this.defaultFlag = "assets/images/flags/us.jpg";
-    }
-  } else {
-    this.flagvalue = val.map((element) => element.flag);
-  }
+  
 }
 
 ngAfterViewInit() {
@@ -230,10 +207,6 @@ callSidemenuCollapse() {
   }
 }
 logout() {
-  this.subs.sink = this.authService.logout().subscribe((res) => {
-    if (!res.success) {
-      this.router.navigate(["/authentication/signin"]);
-    }
-  });
+  
 }
 }

@@ -33,13 +33,11 @@ import {
 
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 import { AuthModule } from './pages/auth/auth.module';
-import { DialogSigninComponent } from './pages/Dialog/dialog-signin/dialog-signin.component';
+
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { HomeModule } from "./pages/home/home.module";
-import { DialogSignupComponent } from './pages/Dialog/dialog-signup/dialog-signup.component';
-import { DialogRecoverPassComponent } from './pages/Dialog/dialog-recover-pass/dialog-recover-pass.component';
-import { DialogChangePassComponent } from './pages/Dialog/dialog-change-pass/dialog-change-pass.component';
-import { DialogSignupErrorComponent } from './pages/Dialog/dialog-signup-error/dialog-signup-error.component';
+import { DialogSigninComponent } from "./pages/dialogs/dialog-signin/dialog-signin.component";
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -60,11 +58,8 @@ export function createTranslateLoader(http: HttpClient): any {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
-    DialogSigninComponent,
-    DialogSignupComponent,
-    DialogRecoverPassComponent,
-    DialogChangePassComponent,
-    DialogSignupErrorComponent,
+    DialogSigninComponent
+
     
     
   ],

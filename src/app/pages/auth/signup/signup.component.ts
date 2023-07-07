@@ -7,11 +7,9 @@ import {
 } from "@angular/forms";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DialogSignupComponent } from "../../Dialog/dialog-signup/dialog-signup.component";
 import { User } from "src/app/models/user";
 import { Observable } from "rxjs";
 import { LoginService } from "src/app/service/login.service";
-import { DialogSignupErrorComponent } from "../../Dialog/dialog-signup-error/dialog-signup-error.component";
 import {HttpResponse } from "@angular/common/http";
 import { ErroresService } from "src/app/service/errores.service";
 import { Respuesta } from "src/app/models/respuesta";
@@ -105,26 +103,6 @@ export class SignupComponent implements OnInit {
     }
   }   
   
-  // Metodo que nos permite mostrar el dialogo de confirmacion
-  openDialog(msg:string){
-    const dialogConfig: MatDialogConfig<any> = {
-      data:msg,
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      panelClass: 'full-screen-dialog',
-    };
-    this.matDialog.open(DialogSignupComponent,dialogConfig)
-  }
-
-  openDialogError(msg:string){
-    const dialogConfig: MatDialogConfig<any> = {
-      data:msg,
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      panelClass: 'full-screen-dialog',
-    };
-    this.matDialog.open(DialogSignupErrorComponent,dialogConfig)
-  }
 
   // Metodo que nos permite optener los datos del formulario y los retorna en un objeto User
   getFormData():User{

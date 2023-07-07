@@ -17,6 +17,7 @@ import { AlertsService } from '../../../service/alerts.service';
   styleUrls: ["./dialog-signin.component.scss"],
 })
 export class DialogSigninComponent implements OnInit {
+  //Se difine la variable del formGrup
   codeAuthForm: FormGroup;
   fields: FormControl[];
   errorInput: boolean = false;
@@ -32,6 +33,7 @@ export class DialogSigninComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+<<<<<<< HEAD:src/app/pages/Dialog/dialog-signin/dialog-signin.component.ts
     console.log(this.data)
     // Formulario de 8 caracteres para nuestro token de 8 caracteres 
     this.codeAuthForm = this.formBuilder.group({
@@ -43,16 +45,24 @@ export class DialogSigninComponent implements OnInit {
       code6: ["", [Validators.required]],
       code7: ["", [Validators.required]],
       code8: ["", [Validators.required]],
+=======
+    //Se difinen los campos del formulario y sus restricciones.
+    this.codeAuthForm = this.formBuilder.group({
+      code1: ["", [Validators.required, Validators.minLength(8)]],
+>>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4:src/app/pages/dialogs/dialog-signin/dialog-signin.component.ts
     });
 
+    //Funcion para validar si se cumple la condiciones del formulario
     this.codeAuthForm.valueChanges.subscribe(() => {
       this.checkFormCompletion();
     });
   }
 
+  //Metodo que nos permite evaluar y dirigir si se cumple el formulario
   checkFormCompletion() {
 
     if (this.codeAuthForm.valid) {
+<<<<<<< HEAD:src/app/pages/Dialog/dialog-signin/dialog-signin.component.ts
       // Obtenemos cada caracter del modal
       const { code1, code2, code3, code4, code5, code6, code7, code8 } = this.codeAuthForm.value
       // Contruimos el token
@@ -78,15 +88,24 @@ export class DialogSigninComponent implements OnInit {
         }
       })  
 
+=======
+      this.router.navigateByUrl("/home");
+      this.errorInput = false;
+      this.textErrorCode = " ";
+      this.closeDialog();
+>>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4:src/app/pages/dialogs/dialog-signin/dialog-signin.component.ts
     } else {
       // Mandamos el mensaje de que debe ingresar los 8 caracteres
       this.errorInput = true;
       this.textErrorCode = "Agrega los 8 dígitos del código ";
     }
   }
+
+  //Metodo para cerrar este dialog
   closeDialog() {
     this.matDialogRef.close();
   }
+<<<<<<< HEAD:src/app/pages/Dialog/dialog-signin/dialog-signin.component.ts
   handlePaste(event: ClipboardEvent) {
     const clipboardData = event.clipboardData;
     const pastedText = clipboardData.getData("text");
@@ -129,7 +148,10 @@ export class DialogSigninComponent implements OnInit {
       }
     }
   }
+=======
+>>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4:src/app/pages/dialogs/dialog-signin/dialog-signin.component.ts
 
+  //Balida el campo que cumpla con las restricciones
   requerido(id: string): boolean {
     if (this.errorInput) {
       const control = this.codeAuthForm.get(id);
@@ -137,7 +159,8 @@ export class DialogSigninComponent implements OnInit {
         control && control.value !== null && control.value !== "";
       if (hasValue) {
         const hasRequiredError = control?.hasError("required");
-        const hasPatternError = control?.hasError("pattern");
+        const hasPatternError = control?.value.length !== 8;
+
         return !hasRequiredError && !hasPatternError;
       }
     }
