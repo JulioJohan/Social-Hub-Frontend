@@ -4,13 +4,9 @@ import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/core/service/auth.service";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
-<<<<<<< HEAD
-import { DialogSigninComponent } from "../../Dialog/dialog-signin/dialog-signin.component";
 import { LoginService } from '../../../service/login.service';
 import { AlertsService } from '../../../service/alerts.service';
-=======
 import { DialogSigninComponent } from "../../dialogs/dialog-signin/dialog-signin.component";
->>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4
 
 @Component({
   selector: "app-signin",
@@ -62,7 +58,6 @@ export class SigninComponent
   //   this.authForm.get("password").setValue("client@123");
   // }
   onSubmit() {
-<<<<<<< HEAD
     // Estas variables son para que se muestre el spiner
     this.submitted = true;
     this.loading = true;
@@ -86,14 +81,13 @@ export class SigninComponent
   })
   // this.openDialogC()  
 
-=======
+
     // this.submitted = true;
     // this.loading = true;
 
     // this.openDialogC()
 
     // this.loading = false;
->>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4
   }
 
   //Open dialogo de code signin

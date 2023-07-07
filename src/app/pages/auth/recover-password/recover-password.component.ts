@@ -2,13 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
-<<<<<<< HEAD
-import { DialogRecoverPassComponent } from "../../Dialog/dialog-recover-pass/dialog-recover-pass.component";
 import { LoginService } from '../../../service/login.service';
 import { AlertsService } from '../../../service/alerts.service';
-=======
 
->>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4
+
 
 @Component({
   selector: "app-recover-password",
@@ -49,7 +46,6 @@ export class RecoverPasswordComponent implements OnInit {
   get f() {
     return this.authForm.controls;
   }
-<<<<<<< HEAD
   // Enviamos la petición al backend para que nos envie el correo
   onSubmit() {   
     this.loginService.forgetPassword(this.authForm.value).subscribe(data=>{
@@ -67,15 +63,14 @@ export class RecoverPasswordComponent implements OnInit {
     // }
 
 
-=======
-  onSubmit() {
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.authForm.valid) {
+
+  // onSubmit() {
+  //   this.submitted = true;
+  //   // stop here if form is invalid
+  //   if (this.authForm.valid) {
       
-    }
->>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4
+  //   }
+  // }
+
   }
-
-
 }

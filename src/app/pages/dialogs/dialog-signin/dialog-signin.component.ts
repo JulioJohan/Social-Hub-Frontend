@@ -33,7 +33,6 @@ export class DialogSigninComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-<<<<<<< HEAD:src/app/pages/Dialog/dialog-signin/dialog-signin.component.ts
     console.log(this.data)
     // Formulario de 8 caracteres para nuestro token de 8 caracteres 
     this.codeAuthForm = this.formBuilder.group({
@@ -45,11 +44,10 @@ export class DialogSigninComponent implements OnInit {
       code6: ["", [Validators.required]],
       code7: ["", [Validators.required]],
       code8: ["", [Validators.required]],
-=======
+    })   
     //Se difinen los campos del formulario y sus restricciones.
     this.codeAuthForm = this.formBuilder.group({
       code1: ["", [Validators.required, Validators.minLength(8)]],
->>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4:src/app/pages/dialogs/dialog-signin/dialog-signin.component.ts
     });
 
     //Funcion para validar si se cumple la condiciones del formulario
@@ -62,11 +60,10 @@ export class DialogSigninComponent implements OnInit {
   checkFormCompletion() {
 
     if (this.codeAuthForm.valid) {
-<<<<<<< HEAD:src/app/pages/Dialog/dialog-signin/dialog-signin.component.ts
       // Obtenemos cada caracter del modal
       const { code1, code2, code3, code4, code5, code6, code7, code8 } = this.codeAuthForm.value
       // Contruimos el token
-      const token = `${code1}${code2}${code3}${code4}${code5}${code6}${code7}${code8}`
+      const token = `${code1}`
       console.log(token)
       const checkSendToken = {
         email: this.data.email,
@@ -88,12 +85,11 @@ export class DialogSigninComponent implements OnInit {
         }
       })  
 
-=======
+
       this.router.navigateByUrl("/home");
       this.errorInput = false;
       this.textErrorCode = " ";
       this.closeDialog();
->>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4:src/app/pages/dialogs/dialog-signin/dialog-signin.component.ts
     } else {
       // Mandamos el mensaje de que debe ingresar los 8 caracteres
       this.errorInput = true;
@@ -105,7 +101,6 @@ export class DialogSigninComponent implements OnInit {
   closeDialog() {
     this.matDialogRef.close();
   }
-<<<<<<< HEAD:src/app/pages/Dialog/dialog-signin/dialog-signin.component.ts
   handlePaste(event: ClipboardEvent) {
     const clipboardData = event.clipboardData;
     const pastedText = clipboardData.getData("text");
@@ -148,8 +143,6 @@ export class DialogSigninComponent implements OnInit {
       }
     }
   }
-=======
->>>>>>> 17e47593d7de39785460c458e07dcc5cc401d2c4:src/app/pages/dialogs/dialog-signin/dialog-signin.component.ts
 
   //Balida el campo que cumpla con las restricciones
   requerido(id: string): boolean {
@@ -165,5 +158,5 @@ export class DialogSigninComponent implements OnInit {
       }
     }
     return true;
-  }
+}
 }
