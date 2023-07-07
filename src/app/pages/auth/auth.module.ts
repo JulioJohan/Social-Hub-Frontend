@@ -14,6 +14,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { SignupComponent } from "./signup/signup.component";
 import { RecoverPasswordComponent } from "./recover-password/recover-password.component";
 import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { ConfirmAccountComponent } from './confirm-account/confirm-account.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ChangePasswordComponent } from "./change-password/change-password.compo
     SignupComponent,
     RecoverPasswordComponent,
     ChangePasswordComponent,
+    ConfirmAccountComponent,
   ],
   imports: [
     CommonModule,

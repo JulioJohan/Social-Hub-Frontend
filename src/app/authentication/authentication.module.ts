@@ -20,7 +20,7 @@ import { MatButtonModule } from "@angular/material/button";
     SigninComponent,
     SignupComponent,
     LockedComponent,
-    ForgotPasswordComponent,
+    ForgotPasswordComponent,    
   ],
   imports: [
     CommonModule,

@@ -62,8 +62,10 @@ export class LoginService {
       email: email,
       password: password
     }
-    return this.http.post(`${this.url}/login`, formularioData);
-  }
+    return this.http.post(`${this.url}/login/`, formularioData).pipe(tap((resp:any)=>{
+
+    }))
+}
 
   // Comunicación para la implementación del login 
   public doubleAuthentication(usuario: any) {
