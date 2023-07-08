@@ -104,7 +104,7 @@ export class LoginService {
     // localStorage.removeItem('token');
     localStorage.removeItem('token');
     // Cambiar la ruta 
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/auth/signin');
   }
 
 

@@ -84,12 +84,6 @@ export class DialogSigninComponent implements OnInit {
           this.textErrorCode = "";
         }
       })  
-
-
-      this.router.navigateByUrl("/home");
-      this.errorInput = false;
-      this.textErrorCode = " ";
-      this.closeDialog();
     } else {
       // Mandamos el mensaje de que debe ingresar los 8 caracteres
       this.errorInput = true;

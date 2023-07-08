@@ -8,9 +8,8 @@ import {
   AfterViewInit,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { ConfigService } from "src/app/config/config.service";
-import { AuthService } from "src/app/core/service/auth.service";
-import { LanguageService } from "src/app/core/service/language.service";
+import { LoginService } from "src/app/service/login.service";
+
 import { MenuService } from "src/app/service/menu.service";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 const document: any = window.document;
@@ -36,11 +35,8 @@ constructor(
   @Inject(DOCUMENT) private document: Document,
   private renderer: Renderer2,
   public elementRef: ElementRef,
-  private configService: ConfigService,
-  private authService: AuthService,
-  private router: Router,
+  private authService: LoginService,
   private serviseMenu:MenuService,
-  public languageService: LanguageService
 ) {
 
 }
@@ -101,7 +97,11 @@ notifications: any[] = [
   },
 ];
 ngOnInit() {
-  
+  //Optiene si se dio clic en el menu para extender el menu
+  this.serviseMenu.listen().subscribe((event: any) => {
+    this.menuOpen = event.event;
+
+  });
 }
 
 ngAfterViewInit() {
@@ -184,7 +184,7 @@ setLanguage(text: string, lang: string, flag: string) {
   this.countryName = text;
   this.flagvalue = flag;
   this.langStoreValue = lang;
-  this.languageService.setLanguage(lang);
+  
 }
 mobileMenuSidebarOpen(event: any, className: string) {
   const hasClass = event.target.classList.contains(className);
@@ -207,6 +207,6 @@ callSidemenuCollapse() {
   }
 }
 logout() {
-  
+  this.authService.logout()
 }
 }

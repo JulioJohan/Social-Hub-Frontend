@@ -1,4 +1,4 @@
-<nav #navbar class="navbar active">
+<nav #navbar class="navbar active " style="background-color: rgb(255, 255, 255);">
   <div class="container-fluid">
     <div class="navbar-header">
       <a
@@ -14,25 +14,28 @@
         class="bars"
         (click)="mobileMenuSidebarOpen($event, 'overlay-open')"
       ></a>
-      
+
       <a class="navbar-brand">
         <div class="row">
           <div class="col-1 menuC">
-                <button
-                  mat-icon-button
-                  style="margin-top: -5px;"
-                  aria-label="Example icon-button with menu icon"
-                  (click)="callSidemenuCollapse()"
-                >
-                  <mat-icon>menu</mat-icon>
-                </button>
+            <button
+              mat-icon-button
+              style="margin-top: -5px"
+              aria-label="Example icon-button with menu icon"
+              (click)="callSidemenuCollapse()"
+            >
+              <mat-icon>menu</mat-icon>
+            </button>
           </div>
-          <div class="col">
-            <img src="assets/images/logo.png" alt="" />
-        <span class="logo-name">Kuber</span>
+          <div
+            routerLink="/home"
+            class="col logoNetworks d-flex align-items-center justify-content-center"
+            style="margin-top: -10px; cursor: pointer;"
+          >
+            <img src="assets/images/media.png" />
+            <span class="logo-name text" style="color: black">Socila hub</span>
           </div>
         </div>
-        
       </a>
     </div>
 
