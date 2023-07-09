@@ -1,36 +1,24 @@
-.conBookface {
-  width: 400px;
-  border: 2pt solid rgb(223, 217, 217);
-  border-radius: 10pt;
-}
-.margen10 {
-  margin: 10px;
-}
-.margen20 {
-  margin: 20px;
-}
-.inputCom {
-  border-radius: 50pt;
-  height: 30px;
+.card{
+  background-color: rgb(233, 237, 237);
 }
 
-.imgCom {
-  width: 20px;
-  height: 20px;
+
+.example-card {
+  max-width: 100%;
+  margin-bottom: 30px;
 }
-.margenLef20 {
-  margin-left: 20px;
+
+
+
+.example-header-image {
+  background-size: cover;
 }
-.margenLef10 {
-  margin-left: 10px;
+
+.postText{
+  font-size: larger;
 }
-.conImgPub {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.imOrVideoP {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+
+.liked {
+  background-color: blue;
+  color: white;
 }
