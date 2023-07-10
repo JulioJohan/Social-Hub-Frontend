@@ -8,6 +8,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { PublicationsComponent } from './publications/publications.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +27,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FacebookRoutingModule,
     MatToolbarModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatBadgeModule,
+    MatCardModule,
+    MatButtonModule,
+    MatPaginatorModule
   ],
   exports:[FacebookComponent]
 })
