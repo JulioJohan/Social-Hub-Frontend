@@ -12,6 +12,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 
 
@@ -20,7 +21,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   declarations: [
     FacebookComponent,
     HeaderComponent,
-    PublicationsComponent
+    PublicationsComponent,
+    CreatePostComponent
   ],
   imports: [
     CommonModule,

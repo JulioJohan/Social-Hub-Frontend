@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Post } from 'src/app/models/post.model';
 import { PublicacioneServices } from 'src/app/service/publicaciones.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { CreatePostComponent } from '../create-post/create-post.component';
 
 
 @Component({
@@ -36,7 +38,8 @@ export class PublicationsComponent implements OnInit {
   postLiked = false;
 
 
-  constructor(private postService: PublicacioneServices) { }
+  constructor(private postService: PublicacioneServices,
+    public dialog: MatDialog) { }
 
   posts: Post[] =[];
 
@@ -88,5 +91,17 @@ export class PublicationsComponent implements OnInit {
     console.log(event)
     this.getAllPostPage(event.pageIndex, event.pageSize);
   }
+
+
+
+  createPost() {
+    const modalRef = this.dialog.open(CreatePostComponent, {
+      width: '1000px',
+    });
+    modalRef.afterClosed().subscribe(result=>{
+        //Se cerro el dialog
+    })
+  }
+
 
 }
