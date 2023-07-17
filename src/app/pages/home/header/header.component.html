@@ -1,9 +1,10 @@
-<nav #navbar class="navbar active " style="background-color: rgb(255, 255, 255);">
+<nav #navbar class="navbar active text" style="background-color: rgb(255, 255, 255); color: black;">
   <div class="container-fluid">
     <div class="navbar-header">
       <a
         href="#"
         onClick="return false;"
+        style="color: black;"
         class="navbar-toggle collapsed"
         (click)="isNavbarCollapsed = !isNavbarCollapsed"
         aria-expanded="false"
@@ -98,7 +99,7 @@
           </div>
         </li>
         <!-- #START# Notifications-->
-        <li class="nav-item btnNotification" ngbDropdown>
+        <li class="nav-item btnNotification" ngbDropdown *ngIf="isNavbarCollapsed">
           <button
             mat-icon-button
             ngbDropdownToggle
@@ -154,22 +155,20 @@
           </div>
         </li>
         <!-- #END# Notifications-->
-        <li class="nav-item user_profile btnUserDropdown" ngbDropdown>
+        <li class="nav-item user_profile btnUserDropdown" ngbDropdown >
           <div
             class="chip dropdown-toggle"
             ngbDropdownToggle
             class="nav-notification-icons pt-0"
           >
             <img
-              src="{{ userImg }}"
-              class="user_img"
-              width="32"
-              height="32"
+              [src]=" data.avatar || '' "
+              class="user_img d-block imUser"
               alt="User"
             />
-            <span>Ella Jones</span>
+            <span>{{data.name}}</span>
           </div>
-          <div ngbDropdownMenu class="notification-dropdown pullDown">
+          <div ngbDropdownMenu class="notification-dropdown pullDown" >
             <div
               class="noti-list"
               style="position: relative; max-width: 600px; max-height: 300px"

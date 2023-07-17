@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { User } from '../models/user';
-
+import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { Respuesta } from '../models/respuesta';
 import { environment } from 'src/environments/environment';
@@ -107,7 +107,13 @@ export class LoginService {
     this.router.navigateByUrl('/auth/signin');
   }
 
+  //decodificar token
+  decodeToken():number{
+    const token =localStorage.getItem('token')
+    const decodedToken: any = jwt_decode.default(token);
+    return decodedToken.uid
 
+  }
 
 }
 
