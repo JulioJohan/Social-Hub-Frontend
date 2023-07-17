@@ -1,105 +1,186 @@
-<div class="conteiner" style="overflow-x: hidden; background-color: white;">
+<div class="conteiner" style="overflow-x: hidden; background-color: white">
   <mat-toolbar>
     <app-header></app-header>
-    
   </mat-toolbar>
-  <div class="row text"  >
-    <div class="col-1 menu" [ngClass]="openMenu ? 'c1' : 'c2'" [class.inicio-animacion]="iniciarAnimacion" 
-    style="position: fixed">
-    <div routerLink="/home" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
-      <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
-        <img
-          src="assets/images/home.png "
-          class="rounded d-block imOrVideoP"
-        />
-      </div>
-      <div [hidden]="!openMenu" class="col textLogo">
-        Home
-      </div>
-    </div>
-      <div routerLink="/home/toktik" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
-        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
+  
+  <mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <mat-drawer #drawer [mode]="'over'"><div
+      class="col-1  c1"
+    >
+      <div
+        routerLink="/home" (click)="closeMenu()" 
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
           <img
-            src="assets/images/BT.png "
+            src="assets/images/home.png "
             class="rounded d-block imOrVideoP"
           />
         </div>
-        <div [hidden]="!openMenu" class="col textLogo">
-          Toktik
-        </div>
+        <div [hidden]="!openMenu"  class="col textLogo">Home</div>
       </div>
-      <div routerLink="/home/bookface" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
-        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
-          <img
-            src="assets/images/BF.png "
-            class="rounded d-block imOrVideoP"
-          />
+      <div
+        routerLink="/home/toktik" (click)="closeMenu()"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img src="assets/images/BT.png " class="rounded d-block imOrVideoP" />
         </div>
-        <div [hidden]="!openMenu" class="col textLogo">
-          Bookface
-        </div>
+        <div [hidden]="!openMenu" class="col textLogo">Toktik</div>
       </div>
-      <div (click)="onLogut()" class="row d-flex align-items-center justify-content-center contLogoNet bt" >
-        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
+      <div
+        routerLink="/home/bookface" (click)="closeMenu()"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img src="assets/images/BF.png " class="rounded d-block imOrVideoP" />
+        </div>
+        <div [hidden]="!openMenu" class="col textLogo">Bookface</div>
+      </div>
+      <div
+        (click)="onLogut()"
+        class="row d-flex align-items-center justify-content-center contLogoNet bt"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
           <img
             src="assets/images/Salir.png "
-            class="rounded d-block imOrVideoP "
-          />
-        </div>
-        <div [hidden]="!openMenu" class="col textLogo">
-          Salir
-        </div>
-      </div>
-    </div>
-    <div class="col-1 menuCe" [ngClass]="openMenu ? ' menuC' : 'c1'" [class.inicio-animacion]="iniciarAnimacion" 
-    style="position: fixed">
-    <div (click)="closeMenu()" routerLink="/home" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
-      <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
-        <img
-          src="assets/images/home.png "
-          class="rounded d-block imOrVideoP"
-        />
-      </div>
-      <div  class="col textLogo">
-        Home
-      </div>
-    </div>
-      <div (click)="closeMenu()" routerLink="/home/toktik" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
-        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
-          <img
-            src="assets/images/BT.png "
             class="rounded d-block imOrVideoP"
           />
         </div>
-        <div  class="col textLogo">
-          Toktik
-        </div>
+        <div [hidden]="!openMenu" class="col textLogo">Salir</div>
       </div>
-      <div (click)="closeMenu()" routerLink="/home/bookface" class="row d-flex align-items-center justify-content-center mt-2 contLogoNet" >
-        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
-          <img
-            src="assets/images/BF.png "
-            class="rounded d-block imOrVideoP"
-          />
-        </div>
-        <div  class="col textLogo">
-          Bookface
-        </div>
-      </div>
-      <div (click)="onLogut()" class="row d-flex align-items-center justify-content-center contLogoNet bt" >
-        <div class="col-1 logoNetworks d-flex align-items-center justify-content-center">
-          <img
-            src="assets/images/Salir.png "
-            class="rounded d-block imOrVideoP "
-          />
-        </div>
-        <div  class="col textLogo">
-          Salir
-        </div>
-      </div>
-    </div>
-    <div class="col wind" >
+    </div></mat-drawer>
+    <mat-drawer-content style="height: 93vh; overflow-x: hidden;">
       <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+   <div class="row text">
+   <!-- <div
+      class="col-1  c1"
+    >
+      <div
+        routerLink="/home"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img
+            src="assets/images/home.png "
+            class="rounded d-block imOrVideoP"
+          />
+        </div>
+        <div [hidden]="!openMenu" class="col textLogo">Home</div>
+      </div>
+      <div
+        routerLink="/home/toktik"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img src="assets/images/BT.png " class="rounded d-block imOrVideoP" />
+        </div>
+        <div [hidden]="!openMenu" class="col textLogo">Toktik</div>
+      </div>
+      <div
+        routerLink="/home/bookface"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img src="assets/images/BF.png " class="rounded d-block imOrVideoP" />
+        </div>
+        <div [hidden]="!openMenu" class="col textLogo">Bookface</div>
+      </div>
+      <div
+        (click)="onLogut()"
+        class="row d-flex align-items-center justify-content-center contLogoNet bt"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img
+            src="assets/images/Salir.png "
+            class="rounded d-block imOrVideoP"
+          />
+        </div>
+        <div [hidden]="!openMenu" class="col textLogo">Salir</div>
+      </div>
     </div>
+    
+    <div
+      class="col-1 menuCe"
+      [ngClass]="openMenu ? ' menuC' : 'c1'"
+      [class.inicio-animacion]="iniciarAnimacion"
+      style="position: fixed; z-index: 9999"
+      id="miDiv"
+    >
+      <div
+        (click)="closeMenu()"
+        routerLink="/home"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img
+            src="assets/images/home.png "
+            class="rounded d-block imOrVideoP"
+          />
+        </div>
+        <div class="col textLogo">Home</div>
+      </div>
+      <div
+        (click)="closeMenu()"
+        routerLink="/home/toktik"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img src="assets/images/BT.png " class="rounded d-block imOrVideoP" />
+        </div>
+        <div class="col textLogo">Toktik</div>
+      </div>
+      <div
+        (click)="closeMenu()"
+        routerLink="/home/bookface"
+        class="row d-flex align-items-center justify-content-center mt-2 contLogoNet"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img src="assets/images/BF.png " class="rounded d-block imOrVideoP" />
+        </div>
+        <div class="col textLogo">Bookface</div>
+      </div>
+      <div
+        (click)="onLogut()"
+        class="row d-flex align-items-center justify-content-center contLogoNet bt"
+      >
+        <div
+          class="col-1 logoNetworks d-flex align-items-center justify-content-center"
+        >
+          <img
+            src="assets/images/Salir.png "
+            class="rounded d-block imOrVideoP"
+          />
+        </div>
+        <div class="col textLogo">Salir</div>
+      </div>
+    </div> -->
+    <!-- <div class="col">
+      <router-outlet></router-outlet>
+    </div>-->
   </div>
 </div>

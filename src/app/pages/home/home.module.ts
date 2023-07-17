@@ -14,6 +14,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { SelectComponent } from "./select/select.component";
 import { FacebookModule } from "../facebook/facebook.module";
 import { TiktokModule } from "../tiktok/tiktok.module";
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelectModule } from "@angular/material/select";
 
 
 @NgModule({
@@ -29,7 +32,11 @@ import { TiktokModule } from "../tiktok/tiktok.module";
     MatDialogModule,
     MatButtonModule,
     FacebookModule,
-    TiktokModule
+    TiktokModule,
+MatSidenavModule,
+MatFormFieldModule,
+MatSelectModule
+    
   ],
 })
 export class HomeModule {}

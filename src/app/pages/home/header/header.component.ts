@@ -196,14 +196,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   callSidemenuCollapse() {
     this.menuOpen = !this.menuOpen;
     this.serviseMenu.emit(this.menuOpen);
-    const hasClass = this.document.body.classList.contains("side-closed");
-    if (hasClass) {
-      this.renderer.removeClass(this.document.body, "side-closed");
-      this.renderer.removeClass(this.document.body, "submenu-closed");
-    } else {
-      this.renderer.addClass(this.document.body, "side-closed");
-      this.renderer.addClass(this.document.body, "submenu-closed");
-    }
+
   }
 
   //Metodo para salir de la web

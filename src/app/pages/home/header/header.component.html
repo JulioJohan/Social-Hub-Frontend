@@ -1,21 +1,6 @@
 <nav #navbar class="navbar active text" style="background-color: rgb(255, 255, 255); color: black;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a
-        href="#"
-        onClick="return false;"
-        style="color: black;"
-        class="navbar-toggle collapsed"
-        (click)="isNavbarCollapsed = !isNavbarCollapsed"
-        aria-expanded="false"
-      ></a>
-      <a
-        href="#"
-        onClick="return false;"
-        class="bars"
-        (click)="mobileMenuSidebarOpen($event, 'overlay-open')"
-      ></a>
-
       <a class="navbar-brand">
         <div class="row">
           <div class="col-1 menuC">
@@ -29,7 +14,7 @@
             </button>
           </div>
           <div
-            routerLink="/home"
+            routerLink="/home" 
             class="col logoNetworks d-flex align-items-center justify-content-center"
             style="margin-top: -10px; cursor: pointer;"
           >
