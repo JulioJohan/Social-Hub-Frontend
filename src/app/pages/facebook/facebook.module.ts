@@ -7,16 +7,25 @@ import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { PublicationsComponent } from './publications/publications.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {InputFileModule} from 'ngx-input-file'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
-
+ 
 @NgModule({
   declarations: [
     FacebookComponent,
@@ -33,7 +42,18 @@ import { CreatePostComponent } from './create-post/create-post.component';
     MatBadgeModule,
     MatCardModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatPseudoCheckboxModule,
+    MatDatepickerModule,
+    InputFileModule,
+    MatProgressSpinnerModule
   ],
   exports:[FacebookComponent]
 })

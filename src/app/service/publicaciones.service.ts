@@ -33,8 +33,10 @@ export class PublicacioneServices {
     return this.http.get<Response<Post>>(`${this.urlAdmin}/findByUserPost/${idUsuario}`, this.httpOptions)
   }
 
- public createPost(tipePost:number): Observable<Response<Post>> {
-    return this.http.post<Response<Post>>(`${this.urlAdmin}/createPost/${tipePost}`, {}, this.httpOptions)
+ public createPost(post:FormData,tipePost:number): Observable<Response<Post>> {
+    let headers = new HttpHeaders();
+    headers = headers.append('enctype', 'multipart/form-data');
+    return this.http.post<Response<Post>>(`${this.urlAdmin}/createPost/${tipePost}`, post, { headers: headers })
  }
 
  public updatePost(): Observable<Response<Post>> {

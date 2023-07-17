@@ -6,6 +6,7 @@ import { PublicacioneServices } from 'src/app/service/publicaciones.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePostComponent } from '../create-post/create-post.component';
+import { Utils } from 'src/app/shared/utils/utils';
 
 
 @Component({
@@ -37,6 +38,10 @@ export class PublicationsComponent implements OnInit {
 
   postLiked = false;
 
+  //Srcoll
+  loading = false;
+  cargando= false;
+
 
   constructor(private postService: PublicacioneServices,
     public dialog: MatDialog) { }
@@ -45,7 +50,8 @@ export class PublicationsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getAllPost();
-    this.getAllPostPage(this.currentPage, this.pageSize);
+    // this.getAllPostPage(this.currentPage, this.pageSize);
+    this.loadMorePosts();
   }
 
   ngAfterViewInit() {
@@ -60,12 +66,52 @@ export class PublicationsComponent implements OnInit {
   }
 
   getAllPostPage(page:number, size:number){
+    console.log(page, size)
     this.postService.findAllPostPage(page, size).subscribe({next: data=>{
       this.lengthPost=data.count;
-      this.posts= data.list;
+      this.posts= this.posts.concat(data.list); // Concatenar los nuevos posts al final del array existente
+      this.cargando=false;
       console.log(data);
+
     }})
   }
+
+  loadMorePosts() {
+    if (!this.loading) {
+      this.loading = true;
+      this.getAllPostPage(this.currentPage, 5); // 5 posts por carga
+      this.currentPage++; // Avanzamos al siguiente grupo de 5 posts
+      this.loading = false;
+    }
+  }
+  
+  scrollPosition = 0;
+  loadPostsTimeout: any;
+  
+  onScroll() {
+    const scrollContainer = document.querySelector('.scrollClass');
+    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const containerHeight = scrollContainer?.clientHeight || 0;
+    const containerScrollHeight = scrollContainer?.scrollHeight || 0;
+    const containerScrollTop = scrollContainer?.scrollTop || 0;
+    const windowBottom = windowHeight + containerScrollTop;
+  
+    if (windowBottom >= containerScrollHeight - 1 && containerScrollTop > this.scrollPosition) {
+      //Agregando animacion de scroll
+      this.cargando=true;
+
+      this.scrollPosition = containerScrollTop;
+      clearTimeout(this.loadPostsTimeout);
+      this.loadPostsTimeout = setTimeout(() => {
+        this.loadMorePosts();
+      }, 400); // Esperar 200 ms antes de cargar más posts
+    }
+  }
+  
+  
+  
+  
+  
 
   activateComments(){
     this.seeComments=!this.seeComments
@@ -99,8 +145,14 @@ export class PublicationsComponent implements OnInit {
       width: '1000px',
     });
     modalRef.afterClosed().subscribe(result=>{
+      this.posts=[]
         //Se cerro el dialog
+        this.getAllPostPage(0, 5);
     })
+  }
+
+  validaUrl(url:string):boolean{
+    return Utils.isValidUrl(url)
   }
 
 

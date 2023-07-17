@@ -27,6 +27,10 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { HomeModule } from "./pages/home/home.module";
 import { DialogSigninComponent } from "./pages/dialogs/dialog-signin/dialog-signin.component";
 
+import { InputFileConfig, InputFileModule } from 'ngx-input-file';
+const config: InputFileConfig = {
+  fileAccept: '*'
+};
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -66,7 +70,8 @@ export function createTranslateLoader(http: HttpClient): any {
     SharedModule,
     AuthModule,
     HomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    InputFileModule.forRoot(config),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -1,8 +1,8 @@
 export class PostDTO {
     idPost:number;
-    description:number;
+    description:string;
     numLike:number;
-    multimedia:number;
+    multimedia:string;
     share:number;
     user:number;
     multipartFile:any;

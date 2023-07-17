@@ -1,8 +1,9 @@
 export class Post {
     idPost:number;
-    description:number;
+    description:string;
     numLike:number;
-    multimedia:number;
+    multimedia:any;
     share:number;
     user:any;
+    dateRegistration:Date
 }
