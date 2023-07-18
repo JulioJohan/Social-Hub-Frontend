@@ -1,12 +1,24 @@
-<nav #navbar class="navbar active text" style="background-color: rgb(255, 255, 255); color: black;">
+<nav
+  #navbar
+  class="navbar active text"
+  style="background-color: rgb(255, 255, 255); color: black"
+>
   <div class="container-fluid">
     <div class="navbar-header">
+      <a
+        href="#"
+        onClick="return false;"
+        style="color: black"
+        class="navbar-toggle collapsed"
+        (click)="isNavbarCollapsed = !isNavbarCollapsed"
+        aria-expanded="false"
+      ></a>
       <a class="navbar-brand">
         <div class="row">
           <div class="col-1 menuC">
             <button
               mat-icon-button
-              style="margin-top: -5px"
+              style="margin-top: -2px"
               aria-label="Example icon-button with menu icon"
               (click)="callSidemenuCollapse()"
             >
@@ -14,9 +26,9 @@
             </button>
           </div>
           <div
-            routerLink="/home" 
+            routerLink="/home"
             class="col logoNetworks d-flex align-items-center justify-content-center"
-            style="margin-top: -10px; cursor: pointer;"
+            style="margin-top: -15px; cursor: pointer"
           >
             <img src="assets/images/media.png" />
             <span class="logo-name text" style="color: black">Socila hub</span>
@@ -84,7 +96,11 @@
           </div>
         </li>
         <!-- #START# Notifications-->
-        <li class="nav-item btnNotification" ngbDropdown *ngIf="isNavbarCollapsed">
+        <li
+          class="nav-item btnNotification"
+          ngbDropdown
+          *ngIf="isNavbarCollapsed"
+        >
           <button
             mat-icon-button
             ngbDropdownToggle
@@ -140,49 +156,67 @@
           </div>
         </li>
         <!-- #END# Notifications-->
-        <li class="nav-item user_profile btnUserDropdown" ngbDropdown >
+        <li
+          class="nav-item user_profile btnUserDropdown"
+          [matMenuTriggerFor]="menu"
+          ngbDropdown
+        >
           <div
             class="chip dropdown-toggle"
             ngbDropdownToggle
             class="nav-notification-icons pt-0"
           >
             <img
-              [src]=" data.avatar || '' "
+              [src]="data.avatar || ''"
               class="user_img d-block imUser"
               alt="User"
             />
-            <span>{{data.name}}</span>
+            <span>{{ data.name }}</span>
           </div>
-          <div ngbDropdownMenu class="notification-dropdown pullDown" >
-            <div
-              class="noti-list"
-              style="position: relative; max-width: 600px; max-height: 300px"
-            >
-              <ul class="menu">
-                <li class="body">
-                  <ul class="user_dw_menu">
-                    <li>
-                      <a href="#" onClick="return false;"> Account </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick="return false;"> Inbox </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick="return false;"> Settings </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);" (click)="logout()">
-                        Logout
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
+
+          <mat-menu #menu="matMenu" class="text">
+            <button mat-menu-item (click)="openEdirUser()">
+              <mat-icon>manage_accounts</mat-icon>
+              <span>Perfil</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>feedback</mat-icon>
+              <span>Terminos y condiciones</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Salir</span>
+            </button>
+            <br style="font-size: 1pt" />
+            <div class="text-center">v 1.0.0</div>
+          </mat-menu>
+          
+          
         </li>
         <!-- #END# Tasks -->
       </ul>
     </div>
+  </div>
+  <div class="circle text-center menuC">
+    <div
+          class="nav-item btnNotification"
+          ngbDropdown
+          
+        >
+          <button
+            mat-icon-button
+            ngbDropdownToggle
+            class="nav-notification-icons"
+          >
+            <mat-icon
+              ><span class="material-symbols-outlined">
+                notifications
+              </span></mat-icon
+            >
+            <span class="label-count bg-orange">5</span>
+          </button>
+         
+          
+        </div>
   </div>
 </nav>

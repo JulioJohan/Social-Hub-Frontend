@@ -35,7 +35,8 @@ export class LoginService {
   }
 
     // Comunicación para actualizar el usuario con node
-  public updateUser(id: number, user: User): Observable<User> {
+  public updateUser( user: User): Observable<User> {
+    const id = this.decodeToken()
     const formData = new FormData();
     formData.append('name', user.name);
     formData.append('email', user.email);
@@ -48,6 +49,7 @@ export class LoginService {
     formData.append('age', user.age);
     formData.append('date_birth', user.date_birth);
     formData.append('avatar', user.avatar);
+    console.log(user)
     return this.http.put<User>(`${this.url}/users/updateUser/${id}`, user);
   }
 
