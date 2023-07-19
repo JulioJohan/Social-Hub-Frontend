@@ -71,7 +71,6 @@ export class DialogSigninComponent implements OnInit {
       };
       // Lo enviemos al backend
       this.loginService.doubleAuthentication(checkSendToken).subscribe(data => {
-        console.log(data)
         if (!data.ok) {
           this.alertsService.warningMessage(data.msg);
           return;

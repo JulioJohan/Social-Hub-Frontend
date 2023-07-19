@@ -63,7 +63,6 @@ export class SigninComponent
 
     // Nos comunicamos con el backend
     this.loginService.login(this.authForm.value.email, this.authForm.value.password).subscribe(data=>{
-      console.log(data)
       if(!data.ok){
         this.alertsService.warningMessage(data.msg);
         this.loading = false;
