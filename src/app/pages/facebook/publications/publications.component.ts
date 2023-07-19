@@ -4,9 +4,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Post } from 'src/app/models/post.model';
 import { PublicacioneServices } from 'src/app/service/publicaciones.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { Utils } from 'src/app/shared/utils/utils';
+import { CommentsComponent } from './comments/comments.component';
 
 
 @Component({
@@ -153,6 +154,14 @@ export class PublicationsComponent implements OnInit {
 
   validaUrl(url:string):boolean{
     return Utils.isValidUrl(url)
+  }
+
+  goComments(post:Post){
+    const matdialogConfig = new MatDialogConfig();
+    matdialogConfig.data = post;
+    matdialogConfig.autoFocus = false;
+    matdialogConfig.width = '1000px';
+    const modalRef = this.dialog.open(CommentsComponent, matdialogConfig)
   }
 
 

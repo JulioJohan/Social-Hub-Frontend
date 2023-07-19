@@ -1,0 +1,57 @@
+.icono-gris{
+    background-color: #ADD8E6;
+}
+
+.derecha{
+    float:right;
+  }
+
+.example-header-image{
+    background-size: cover;
+}  
+
+.quitar-linea .mat-form-field-underline {
+    background-color: transparent !important;
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #3b5998 ;
+    color: #fff;
+    border-radius: 10px;
+}
+
+
+.proyection-image { 
+    width: 200px;
+    object-fit: contain;
+}
+// #placeholder {
+//     display: inline-block;
+//     color: #999;
+//   }
+  
+  input[type="file"] {
+    /* Establecer el tamaño del input en cero para ocultarlo */
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  
+  
+  .layout {
+    width: 100%;
+  
+    display: flex;
+    gap: 16px;
+  
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .grow1 { flex-grow: 1; }

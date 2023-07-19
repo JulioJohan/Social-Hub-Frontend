@@ -23,6 +23,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {InputFileModule} from 'ngx-input-file'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatMenuModule } from "@angular/material/menu";
+
+import { CommentsComponent } from './publications/comments/comments.component';
+
 
 
  
@@ -31,7 +38,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FacebookComponent,
     HeaderComponent,
     PublicationsComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,
@@ -41,18 +49,22 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatBadgeModule,
     MatCardModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatButtonModule,
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
+    MatNativeDateModule,
+    MatMenuModule,
     MatDialogModule,
     MatRadioModule,
     MatSelectModule,
     MatPseudoCheckboxModule,
     MatDatepickerModule,
-    InputFileModule,
+    // InputFileModule,
     MatProgressSpinnerModule
   ],
   exports:[FacebookComponent]
