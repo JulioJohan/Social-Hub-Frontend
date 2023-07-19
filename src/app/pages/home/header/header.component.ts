@@ -7,12 +7,14 @@ import {
   Renderer2,
   AfterViewInit,
 } from "@angular/core";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { User } from "src/app/models/user";
 import { LoginService } from "src/app/service/login.service";
 
 import { MenuService } from "src/app/service/menu.service";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
+import { EditUserComponent } from "../edit-user/edit-user.component";
 const document: any = window.document;
 @Component({
   selector: "app-header",
@@ -36,7 +38,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     public elementRef: ElementRef,
     private authService: LoginService,
-    private serviseMenu: MenuService
+    private serviseMenu: MenuService,
+    private matDialog: MatDialog ,
   ) {
     
   }
@@ -210,5 +213,23 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.authService.findById(uid).subscribe((data:any) => {
       this.data = data.data
     });
+  }
+
+  //Abrir el dialogo de editar usuario
+  openEdirUser(){
+    
+      const dialogConfig: MatDialogConfig<any> = {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        panelClass: 'full-screen-dialog-edit-user',
+      };
+      dialogConfig.disableClose = true;
+      // Example usage
+      const result =this.matDialog.open(EditUserComponent, dialogConfig);
+      result.afterClosed().subscribe((result) => {
+        if(result){
+          this.uId()
+        }
+      })
   }
 }

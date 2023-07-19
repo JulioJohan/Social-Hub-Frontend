@@ -14,13 +14,15 @@ import { MatButtonModule } from "@angular/material/button";
 import { SelectComponent } from "./select/select.component";
 import { FacebookModule } from "../facebook/facebook.module";
 import { TiktokModule } from "../tiktok/tiktok.module";
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
-
-
+import {MatMenuModule} from '@angular/material/menu';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { MatInputModule } from "@angular/material/input";
+import { ReactiveFormsModule } from "@angular/forms";
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, SelectComponent],
+  declarations: [HomeComponent, HeaderComponent, SelectComponent, EditUserComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -33,10 +35,12 @@ import { MatSelectModule } from "@angular/material/select";
     MatButtonModule,
     FacebookModule,
     TiktokModule,
-MatSidenavModule,
-MatFormFieldModule,
-MatSelectModule
-    
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatInputModule
   ],
 })
 export class HomeModule {}
