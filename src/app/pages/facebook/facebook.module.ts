@@ -29,6 +29,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatMenuModule } from "@angular/material/menu";
 
 import { CommentsComponent } from './publications/comments/comments.component';
+import { MyPublicationsComponent } from './my-publications/my-publications.component';
 
 
 
@@ -39,7 +40,8 @@ import { CommentsComponent } from './publications/comments/comments.component';
     HeaderComponent,
     PublicationsComponent,
     CreatePostComponent,
-    CommentsComponent
+    CommentsComponent,
+    MyPublicationsComponent
   ],
   imports: [
     CommonModule,

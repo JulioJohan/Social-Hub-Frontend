@@ -7,6 +7,7 @@ import { SelectComponent } from "./pages/home/select/select.component";
 import { FacebookComponent } from "./pages/facebook/facebook.component";
 import { TiktokComponent } from "./pages/tiktok/tiktok.component";
 import { PublicationsComponent } from "./pages/facebook/publications/publications.component";
+import { MyPublicationsComponent } from "./pages/facebook/my-publications/my-publications.component";
 
 const routes: Routes = [
  
@@ -33,6 +34,7 @@ const routes: Routes = [
         children: [
           { path: "", redirectTo: "public", pathMatch: "full" },
           { path: "public", component: PublicationsComponent },
+          { path: "myposts", component: MyPublicationsComponent }
         ],
       },
       { path: "toktik", component: TiktokComponent },
