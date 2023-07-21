@@ -66,7 +66,7 @@ import { MyPublicationsComponent } from './my-publications/my-publications.compo
     MatSelectModule,
     MatPseudoCheckboxModule,
     MatDatepickerModule,
-    // InputFileModule,
+    InputFileModule,
     MatProgressSpinnerModule
   ],
   exports:[FacebookComponent]
