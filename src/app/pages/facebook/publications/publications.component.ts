@@ -125,16 +125,33 @@ export class PublicationsComponent implements OnInit {
     this.subComments=!this.subComments
   }
 
-  toggleLike() {
-    if (this.postLiked) {
+  toggleLike(row) {
+    console.log(row)
+    if (row.liked) {
       console.log("Restando likes");
       this.postLiked=false;
-      // this.subtractLike();
+      row.liked=false;
+      row.numLike--;
+      this.subtractLike(row.idPost);
     } else {
       this.postLiked=true;
+      row.numLike++;
+      row.liked=true;
       console.log("Sumando like");
-      // this.addLike();
+      this.sumLike(row.idPost);
     }
+  }
+
+  subtractLike(id){
+    this.postService.subtractLike(id).subscribe({next:data=>{
+      console.log(data);
+    }})
+  }
+
+  sumLike(id){
+    this.postService.sumLike(id).subscribe({next:data=>{
+      console.log(data);
+    }})
   }
 
   onPageChange(event: any) {
@@ -150,7 +167,7 @@ export class PublicationsComponent implements OnInit {
       // width: '1000px',
       maxWidth: '100vw',
       maxHeight: '100vh',
-      panelClass: 'full-screen-dialog-edit-user',
+      // panelClass: 'full-screen-dialog-edit-user',
     });
     modalRef.afterClosed().subscribe(result=>{
       this.posts=[]
