@@ -157,11 +157,14 @@ export class PublicationsComponent implements OnInit {
   }
 
   goComments(post:Post){
-    const matdialogConfig = new MatDialogConfig();
-    matdialogConfig.data = post;
-    matdialogConfig.autoFocus = false;
-    matdialogConfig.width = '1000px';
-    const modalRef = this.dialog.open(CommentsComponent, matdialogConfig)
+    const dialogConfig: MatDialogConfig<any> = {
+      data:post,
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'full-screen-dialog-comentarios',
+    };
+    
+    const modalRef = this.dialog.open(CommentsComponent, dialogConfig)
   }
 
 
