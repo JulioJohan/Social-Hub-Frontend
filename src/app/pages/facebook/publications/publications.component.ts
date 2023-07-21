@@ -181,12 +181,14 @@ export class PublicationsComponent implements OnInit {
   }
 
   goComments(post:Post){
+
     const dialogConfig: MatDialogConfig<any> = {
       data:post,
       maxWidth: '100vw',
       maxHeight: '100vh',
-      panelClass: 'full-screen-dialog-comentarios',
+      panelClass: 'full-screen-dialog-coments',
     };
+    dialogConfig.disableClose = true;
     
     const modalRef = this.dialog.open(CommentsComponent, dialogConfig)
   }

@@ -2,12 +2,13 @@
     background-color: #ADD8E6;
 }
 
-.derecha{
-    float:right;
-  }
+// .derecha{
+//     float:right;
+//   }
 
 .example-header-image{
     background-size: cover;
+    
 }  
 
 .quitar-linea .mat-form-field-underline {
@@ -26,16 +27,17 @@
     width: 200px;
     object-fit: contain;
 }
-// #placeholder {
-//     display: inline-block;
-//     color: #999;
-//   }
+#placeholder {
+    display: inline-block;
+    color: #999;
+  }
   
   input[type="file"] {
     /* Establecer el tamaño del input en cero para ocultarlo */
     width: 0;
     height: 0;
     opacity: 0;
+    text-align: center;
     overflow: hidden;
     position: absolute;
     z-index: -1;
@@ -66,3 +68,9 @@
   .derecha{ 
     float: right;
   }
+  .text1{
+    font-size: 20px;
+    color: #000;
+    width: 90%;
+  }
+  
