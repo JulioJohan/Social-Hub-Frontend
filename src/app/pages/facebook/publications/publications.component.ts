@@ -8,6 +8,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { Utils } from 'src/app/shared/utils/utils';
 import { CommentsComponent } from './comments/comments.component';
+import { LoginService } from 'src/app/service/login.service';
+import { User } from 'src/app/models/user';
 
 
 @Component({
@@ -34,7 +36,7 @@ export class PublicationsComponent implements OnInit {
   currentPage: number = 0; // Página actual
   lengthPost:number=0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  data:User;
 
 
   postLiked = false;
@@ -45,7 +47,8 @@ export class PublicationsComponent implements OnInit {
 
 
   constructor(private postService: PublicacioneServices,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private authService: LoginService) { }
 
   posts: Post[] =[];
 
@@ -56,6 +59,7 @@ export class PublicationsComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.uId();
   }
 
   getAllPost(){
@@ -121,16 +125,33 @@ export class PublicationsComponent implements OnInit {
     this.subComments=!this.subComments
   }
 
-  toggleLike() {
-    if (this.postLiked) {
+  toggleLike(row) {
+    console.log(row)
+    if (row.liked) {
       console.log("Restando likes");
       this.postLiked=false;
-      // this.subtractLike();
+      row.liked=false;
+      row.numLike--;
+      this.subtractLike(row.idPost);
     } else {
       this.postLiked=true;
+      row.numLike++;
+      row.liked=true;
       console.log("Sumando like");
-      // this.addLike();
+      this.sumLike(row.idPost);
     }
+  }
+
+  subtractLike(id){
+    this.postService.subtractLike(id).subscribe({next:data=>{
+      console.log(data);
+    }})
+  }
+
+  sumLike(id){
+    this.postService.sumLike(id).subscribe({next:data=>{
+      console.log(data);
+    }})
   }
 
   onPageChange(event: any) {
@@ -143,7 +164,10 @@ export class PublicationsComponent implements OnInit {
 
   createPost() {
     const modalRef = this.dialog.open(CreatePostComponent, {
-      width: '1000px',
+      // width: '1000px',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      // panelClass: 'full-screen-dialog-edit-user',
     });
     modalRef.afterClosed().subscribe(result=>{
       this.posts=[]
@@ -165,6 +189,15 @@ export class PublicationsComponent implements OnInit {
     };
     
     const modalRef = this.dialog.open(CommentsComponent, dialogConfig)
+  }
+
+
+  //optener los datos del usuario desde el token
+  uId(){
+    const uid = this.authService.decodeToken();
+    this.authService.findById(uid).subscribe((data:any) => {
+      this.data = data.data
+    });
   }
 
 

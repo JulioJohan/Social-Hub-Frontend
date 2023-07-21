@@ -47,10 +47,10 @@ export class PublicacioneServices {
     return this.http.delete<Response<Post>>(`${this.urlAdmin}/deletePost/${idPost}`, this.httpOptions)
  }
 
- public likePost(idPost:number): Observable<Response<Post>> {
-    return this.http.post<Response<Post>>(`${this.urlAdmin}/likePost/${idPost}`, {}, this.httpOptions)
+ public sumLike(idPost:number): Observable<Response<Post>> {
+    return this.http.put<Response<Post>>(`${this.urlAdmin}/sumLike/${idPost}`, {}, this.httpOptions)
  }
- public unlikePost(idPost:number): Observable<Response<Post>> {
-    return this.http.post<Response<Post>>(`${this.urlAdmin}/unlikePost/${idPost}`, {}, this.httpOptions)
+ public subtractLike(idPost:number): Observable<Response<Post>> {
+    return this.http.put<Response<Post>>(`${this.urlAdmin}/subtractLike/${idPost}`, {}, this.httpOptions)
  }
 }
