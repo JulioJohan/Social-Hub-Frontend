@@ -2,9 +2,9 @@ import { Post } from './post.model';
 import { User } from './user';
 export class Comment{
     idComment:number;
-    descripcion:number;
+    descripcion:string;
     numLike:number;
-    multimedia:number;
+    multimedia:string;
     user:User;
     post:Post;
     dateRegistration:Date;
