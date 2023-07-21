@@ -48,7 +48,17 @@ export class CommentsService {
   }
 
   updateComment(commentDTO:CommentDTO):Observable<Response<Comment>>{
-    return this.http.put<Response<Comment>>(`${this.urlAdmin}/updateComment/`,commentDTO,this.httpOptions);
+    let headers = new HttpHeaders();
+    headers = headers.append('enctype', 'multipart/form-data');
+    const formData = new FormData();
+    formData.append('idComment', commentDTO.idComment.toString());
+    formData.append('user',commentDTO.user.toString());
+    formData.append('post', commentDTO.post.toString());
+    if(commentDTO.multipartFile != null){
+      formData.append('multipartFile',commentDTO.multipartFile);
+    }
+    formData.append('descripcion',commentDTO.descripcion);
+    return this.http.put<Response<Comment>>(`${this.urlAdmin}/updateComment/`,formData,{headers:headers});
   }
 
   deleteComment(idPost:number):Observable<Response<Comment>>{
