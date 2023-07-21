@@ -32,18 +32,16 @@
     }
   }
 
+  .full-screen-dialog-coments .mat-dialog-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    height: 900px;
+    width: 650px;
+  }
   @media (max-width: 600px) {
-    .full-screen-dialog-comentarios .mat-dialog-container {
+    .full-screen-dialog-coments .mat-dialog-container {
       height: 100vh;
       width: 100vw;
       border-radius: 0px;
-
     }
-  }
-  .full-screen-dialog-comentarios .full-screen-dialog{
-
-   background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    height: 990px;
-    width: 700px;
   }
