@@ -58,6 +58,8 @@ export class CommentsService {
       formData.append('multipartFile',commentDTO.multipartFile);
     }
     formData.append('descripcion',commentDTO.descripcion);
+    formData.append('multimedia',commentDTO.multimedia);
+
     return this.http.put<Response<Comment>>(`${this.urlAdmin}/updateComment/`,formData,{headers:headers});
   }
 

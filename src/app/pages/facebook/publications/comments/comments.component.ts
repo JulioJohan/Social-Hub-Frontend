@@ -44,7 +44,8 @@ export class CommentsComponent implements OnInit {
   // Edit Comment
   editingMode = false;
   editedDescription = '';
-  imageEdit:any;
+  imageEdit:any = null;
+  commentEdit:Comment;
 
   formComment = this.formBuilder.group({
     descripcion:[''],
@@ -94,10 +95,11 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-  toggleEditMode(comment:Comment) {
-    console.log('Entre Toggle ')
-    this.editingMode = true;
-    this.editedDescription = comment.descripcion; // Initialize the edited description
+  toggleEditMode(commentM:Comment) {
+    
+    this.editingMode = true;    
+    this.commentEdit = this.comments.find(comment => comment.idComment === commentM.idComment);
+    this.editedDescription = commentM.descripcion; // Initialize the edited description
   }
 
   cancelEdit() {
@@ -237,7 +239,9 @@ export class CommentsComponent implements OnInit {
     newComment.descripcion = this.editedDescription;  
     newComment.idComment = comment.idComment;
     console.log(this.imageEdit)
-    this.imageEdit != null ? newComment.multipartFile = this.imageEdit : newComment.multimedia = comment.multimedia;
+    this.imageEdit !== null ? newComment.multipartFile = this.imageEdit : newComment.multimedia = comment.multimedia;
+    // newComment.multimedia = null
+    console.log(this.imageEdit)
     newComment.numLike = comment.numLike
     newComment.user = this.user.id_user;
     newComment.post = comment.post.idPost;

@@ -18,7 +18,7 @@
       <h2 *ngIf="comments.length === 0">
         No hay comentario, se el primero en comentar
       </h2>
-      <mat-card class="example-card" *ngFor="let comment of comments">
+      <mat-card class="example-card" *ngFor="let comment of comments; ">
         <div class="derecha" *ngIf="comment.user.idUser == user.id_user">
           <button
             mat-icon-button
@@ -27,8 +27,9 @@
           >
             <mat-icon>more_vert</mat-icon>
           </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="toggleEditMode(comment)">
+          <div>
+          <mat-menu #menu="matMenu" >
+            <button *ngIf="i === i" mat-menu-item (click)="toggleEditMode(comment)">
               <mat-icon class="col-blue">cached</mat-icon>
               <span>Editar</span>
             </button>
@@ -37,6 +38,7 @@
               <span>Eliminar</span>
             </button>
           </mat-menu>
+          </div>
         </div>
         <mat-card-header>
           <div
@@ -55,19 +57,19 @@
           </div>
           
         </mat-card-header>
-        <mat-card-content>
-          <ng-container *ngIf="!editingMode; else editMode">
+        <mat-card-content >
+          <ng-container *ngIf="comment !== commentEdit; else editMode">
             {{ comment.descripcion }}
           </ng-container>
           <ng-template #editMode>
-            <mat-form-field>
+            <mat-form-field >
               <input matInput [(ngModel)]="editedDescription" />
             </mat-form-field>
             <div *ngIf="comment.multimedia">
               <div>
                 <img
                   mat-card-xl-image
-                  src="{{ comment?.multimedia }}"
+                  src="{{ comment.multimedia }}"
                   alt="Imagen del comentario"
                 />
               </div>
