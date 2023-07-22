@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Post } from 'src/app/models/post.model';
 import { CommentsService } from '../../../../service/comments.service';
@@ -23,7 +23,8 @@ export class CommentsComponent implements OnInit {
   private commentsService:CommentsService,
   private alertsService:AlertsService,
   private loginService:LoginService,
-  private formBuilder:FormBuilder ) {
+  private formBuilder:FormBuilder,
+  private elementRef: ElementRef ) {
     this.post = data
   }
 
@@ -32,29 +33,79 @@ export class CommentsComponent implements OnInit {
   public user:User;
   public imageUpload!: File;
   public mostrarImagen!:string;
+  public mostrarImagen2!:string;
   public imageTemp!: string | ArrayBuffer | null;
+  commentLikedMap: { [commentId: string]: boolean } = {};
+  commentLiked = false;
   postLiked = false;
+  editableComment: any = null;
+
+
+  // Edit Comment
+  editingMode = false;
+  editedDescription = '';
+  imageEdit:any;
 
   formComment = this.formBuilder.group({
     descripcion:[''],
     img:[]
   })
 
+  // @HostListener('document:click', ['$event'])
+  // onClickOutside(event: Event) {
+  //   // Check if the click event occurred outside the component's element
+  //   if (!this.elementRef.nativeElement.contains(event.target)) {
+  //     // Cancel editing if the editing mode is active
+  //     if (this.editingMode) {
+  //       this.cancelEdit();
+  //     }
+  //   }
+  // }
+
   ngOnInit(): void {
     this.findAllComments();
     this.getUser();
   }
 
-  toggleLike() {
+  toggleLikeComment(comment:Comment) {
+    const commentId = comment.idComment;
+    if (this.commentLikedMap[commentId]) {
+      console.log("Restando likes");
+      // this.commentLiked=false;
+      this.subtractLike(comment);
+    } else {
+      this.commentLikedMap[commentId] = true;
+      // this.commentLiked=true;
+      console.log("Sumando like");
+      this.likeComment(comment);
+    }
+  }
+
+
+  toggleLikePost(){
     if (this.postLiked) {
       console.log("Restando likes");
       this.postLiked=false;
-      // this.subtractLike();
+      // this.subtractLike(comment);
     } else {
       this.postLiked=true;
       console.log("Sumando like");
-      // this.addLike();
+      // this.likeComment(comment);
     }
+  }
+
+  toggleEditMode(comment:Comment) {
+    console.log('Entre Toggle ')
+    this.editingMode = true;
+    this.editedDescription = comment.descripcion; // Initialize the edited description
+  }
+
+  cancelEdit() {
+    // Cancel editing and revert back to read-only mode
+    this.editingMode = false;
+    this.editedDescription = '';
+    this.findAllComments();
+
   }
 
   commentPost(){
@@ -65,6 +116,8 @@ export class CommentsComponent implements OnInit {
       next:(data)=>{
         console.log(data)
         this.comments = data.list;
+        console.log(this.comments);
+        console.log(this.user)
       },
       error:(data) =>{
         this.alertsService.errorMessage('',data.message);        
@@ -109,6 +162,8 @@ export class CommentsComponent implements OnInit {
       placeholder.style.display = 'none';
     }
   }
+
+  
   
 
   uploadImage(event:any){
@@ -128,6 +183,23 @@ export class CommentsComponent implements OnInit {
     event.srcElement.value = null;
   }
 
+  uploadImageEditComment(event:any,comment:Comment){
+    const imagen = event.target.files[0];
+    this.imageEdit = imagen;
+    console.log(event)
+    const reader = new FileReader();
+    // const control = this.formComment.controls.img;
+    reader.onload = (ima) =>{    
+      const base64img = reader.result + '';
+      console.log(base64img)
+      this.mostrarImagen2 = base64img;
+      // control.setValue(base64img);
+      // console.log(control.value)    
+    }
+    reader.readAsDataURL(imagen); 
+    event.srcElement.value = null;
+  }
+
   saveComment(){
     const comment = new CommentDTO();
     comment.multipartFile = this.formComment.controls.img.value;
@@ -140,6 +212,7 @@ export class CommentsComponent implements OnInit {
       next:(data:Response<any>)=>{
         this.alertsService.succesMessage('',data.message);
         this.findAllComments();
+        this.limpiarComentario();
       },
       error:(data:any) =>{
         // console.log(data)
@@ -148,21 +221,83 @@ export class CommentsComponent implements OnInit {
     })
   }
 
+  limpiarComentario(){
+    this.mostrarImagen = '';
+    this.formComment.controls.img.setValue('');
+    this.formComment.controls.descripcion.setValue('');
+  }
+
   deleteImage(){
     this.mostrarImagen = null;
   }
 
-  deleteComment(){
+  updateComment(comment:Comment){
+    console.log(comment)
+    const newComment = new CommentDTO();
+    newComment.descripcion = this.editedDescription;  
+    newComment.idComment = comment.idComment;
+    console.log(this.imageEdit)
+    this.imageEdit != null ? newComment.multipartFile = this.imageEdit : newComment.multimedia = comment.multimedia;
+    newComment.numLike = comment.numLike
+    newComment.user = this.user.id_user;
+    newComment.post = comment.post.idPost;
+    console.log(newComment)
+    this.commentsService.updateComment(newComment).subscribe({
+      next:(data:any)=>{
+        this.alertsService.succesMessage('',data.message);
+        this.findAllComments();
+        this.editingMode = false;      
+        this.mostrarImagen2 = ''
+      },
+      error:(data:any) =>{
+        // console.log(data)
+        this.alertsService.errorMessage('',data.error.message)
+      }     
+    })
+
+  }
+
+  deleteComment(comment:Comment){
+    this.commentsService.deleteComment(comment.idComment).subscribe({
+      next:(data:any)=>{
+        this.alertsService.succesMessage('',data.message);
+        this.findAllComments();
+      },
+      error:(data:any) =>{
+        // console.log(data)
+        this.alertsService.errorMessage('',data.error.message)
+      }      
+    })    
+  }
+
+  likeComment(comment:Comment){
+    this.commentsService.sumLike(comment.idComment).subscribe({
+      next:(data:any) =>{
+        console.log(data);
+        this.findAllComments();
+      },
+      error:(data:any)=>{
+        console.log(data)
+      }      
+    })
+  }
+
+  subtractLike(comment:Comment){
+    this.commentsService.subtractLike(comment.idComment).subscribe({
+      next:(data:any) =>{
+        console.log(data);
+        this.findAllComments();
+      },
+      error:(data:any)=>{
+        console.log(data)
+      }      
+    })
+  }
+
+  removeImage(comment) {
+    comment.multimedia = null;
     
   }
-
-  likeComment(comment:CommentDTO){
-
-  }
-  dislikeComment(comment:CommentDTO){
-
-  }
-
   
 
 

@@ -63,5 +63,9 @@ export class CreatePostComponent implements OnInit {
 
   }
 
+  close(){
+    this.dialogRef.close(); 
+  }
+
 
 }

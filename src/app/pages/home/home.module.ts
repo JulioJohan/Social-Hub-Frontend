@@ -40,7 +40,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatFormFieldModule,
     MatSelectModule,
     MatMenuModule,
-    MatInputModule
+    MatInputModule,
+    MatBadgeModule
   ],
 })
 export class HomeModule {}

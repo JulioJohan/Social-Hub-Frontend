@@ -2,12 +2,13 @@
     background-color: #ADD8E6;
 }
 
-.derecha{
-    float:right;
-  }
+// .derecha{
+//     float:right;
+//   }
 
 .example-header-image{
     background-size: cover;
+    
 }  
 
 .quitar-linea .mat-form-field-underline {
@@ -18,8 +19,6 @@
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-    background-color: #3b5998 ;
-    color: #fff;
     border-radius: 10px;
 }
 
@@ -28,22 +27,27 @@
     width: 200px;
     object-fit: contain;
 }
-// #placeholder {
-//     display: inline-block;
-//     color: #999;
-//   }
+#placeholder {
+    display: inline-block;
+    color: #999;
+  }
   
   input[type="file"] {
     /* Establecer el tamaño del input en cero para ocultarlo */
     width: 0;
     height: 0;
     opacity: 0;
+    text-align: center;
     overflow: hidden;
     position: absolute;
     z-index: -1;
   }
   
-  
+  .inpCom{
+    width: 100%;
+    border: 0px;
+    margin-top: 10px;
+  }
   .layout {
     width: 100%;
   
@@ -55,3 +59,18 @@
   }
   
   .grow1 { flex-grow: 1; }
+
+  .liked {
+    background-color: #3b5998 ;
+    color: white;
+  }
+
+  .derecha{ 
+    float: right;
+  }
+  .text1{
+    font-size: 20px;
+    color: #000;
+    width: 90%;
+  }
+  
