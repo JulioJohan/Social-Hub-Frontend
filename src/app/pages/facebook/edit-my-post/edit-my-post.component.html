@@ -1,6 +1,6 @@
 <div class="card">
     <div class="header">
-        <h2>Crear publicación</h2>
+        <h2>Editar publicación</h2>
     </div>
     <div class="body">
         <form class="m-4" [formGroup]="postForm" (ngSubmit)="onSubmit()">
@@ -13,15 +13,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-file-container">
-                  <p class="mt-1"><span class="uppercase fw-500">Agregar imagen</span></p>
-                  <input-file formControlName="multipartFile" fileLimit="1" fileAccept="image/*"></input-file>  
-                </div>
-              </div>
-              
-            <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                    <button class="btn-space" mat-raised-button color="primary">Aceptar</button>
+                    <button class="btn-space" mat-raised-button color="primary">Guardar</button>
                     <button type="button" mat-button (click)="close()">Cancelar</button>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Response } from "../models/response.model";
 import { Post } from "../models/post.model";
+import { LoginService } from "./login.service";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,8 @@ export class PublicacioneServices {
     headers: new HttpHeaders({"enctype": "multipart/form-data" }),
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private authService:LoginService) {}
 
   public findAllPost(): Observable<Response<Post>> {
     return this.http.get<Response<Post>>(`${this.urlAdmin}/findAllPost`, this.httpOptions)
@@ -29,8 +31,9 @@ export class PublicacioneServices {
   public findByIdPost(idPost:number): Observable<Response<Post>> {
     return this.http.get<Response<Post>>(`${this.urlAdmin}/findByIdPost/${idPost}`, this.httpOptions)
   }
-  public findByUserPost(idUsuario:number): Observable<Response<Post>> {
-    return this.http.get<Response<Post>>(`${this.urlAdmin}/findByUserPost/${idUsuario}`, this.httpOptions)
+  public findByUserPost(): Observable<Response<Post>> {
+    const idUser=this.authService.decodeToken()
+    return this.http.get<Response<Post>>(`${this.urlAdmin}/findByUserPost/${idUser}`, this.httpOptions)
   }
 
  public createPost(post:FormData,tipePost:number): Observable<Response<Post>> {
@@ -39,8 +42,8 @@ export class PublicacioneServices {
     return this.http.post<Response<Post>>(`${this.urlAdmin}/createPost/${tipePost}`, post, { headers: headers })
  }
 
- public updatePost(): Observable<Response<Post>> {
-    return this.http.put<Response<Post>>(`${this.urlAdmin}/updatePost`, {}, this.httpOptions)
+ public updatePost(id:number,post:any): Observable<Response<Post>> {
+    return this.http.put<Response<Post>>(`${this.urlAdmin}/updatePost/${id}`, post, this.httpOptions)
  }
 
  public deletePost(idPost:number): Observable<Response<Post>> {

@@ -30,6 +30,7 @@ import { MatMenuModule } from "@angular/material/menu";
 
 import { CommentsComponent } from './publications/comments/comments.component';
 import { MyPublicationsComponent } from './my-publications/my-publications.component';
+import { EditMyPostComponent } from './edit-my-post/edit-my-post.component';
 
 
 
@@ -41,7 +42,8 @@ import { MyPublicationsComponent } from './my-publications/my-publications.compo
     PublicationsComponent,
     CreatePostComponent,
     CommentsComponent,
-    MyPublicationsComponent
+    MyPublicationsComponent,
+    EditMyPostComponent
   ],
   imports: [
     CommonModule,
