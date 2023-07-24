@@ -24,6 +24,7 @@ export class EditMyPostComponent implements OnInit {
   ) {
     this.postForm = this.fb.group({
       description: ["", [Validators.required]],
+      idPost:[""]
     });
   }
 
@@ -34,7 +35,8 @@ export class EditMyPostComponent implements OnInit {
   agregarDta(){
     this.publicacioneServices.findByIdPost(this.data).subscribe({next:data=>{
       const dataAnte={
-        description:data.data.description
+        description:data.data.description,
+        idPost: data.data.idPost
       }
       this.postForm.patchValue(dataAnte);
     }})
@@ -42,7 +44,7 @@ export class EditMyPostComponent implements OnInit {
   onSubmit() {
     const dataNew=this.postForm.value
     //Se envia 0 indicando que es una publicacion de bookface
-    this.publicacioneServices.updatePost(this.data,dataNew).subscribe({
+    this.publicacioneServices.updatePost(0,dataNew).subscribe({
       next: (data) => {
         console.log(data)
         this.alertsService.succesMessage("Publicación", data.message);
