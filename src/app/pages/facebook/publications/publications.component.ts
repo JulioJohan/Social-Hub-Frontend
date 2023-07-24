@@ -167,7 +167,7 @@ export class PublicationsComponent implements OnInit {
       // width: '1000px',
       maxWidth: '100vw',
       maxHeight: '100vh',
-      // panelClass: 'full-screen-dialog-edit-user',
+       panelClass: 'full-screen-dialog-create-post',
     });
     modalRef.afterClosed().subscribe(result=>{
       this.posts=[]
