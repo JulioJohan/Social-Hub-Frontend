@@ -1,76 +1,27 @@
-// Importamos la fuente de íconos Font Awesome
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
-
-.tiktok-container {
-  display: flex;
-  max-width: 460px; // Ajusta el ancho según tus necesidades
-  margin: 0 auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
+.example-header-image {
+  background-size: cover;
+}
+.video{
+  width: 40vh;
+  height: 68vh;
+  border-radius: 10pt;
 }
 
-.video-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1; // Ocupa todo el espacio disponible
-
-  .video-wrapper {
-    position: relative;
-    padding-bottom: 100%; // Relación de aspecto 16:9 para el video
-    background-color: #000;
-    // Estilos adicionales para el reproductor de video si estás usando uno
-  }
-
-  .user-info {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    margin-bottom: 20px; // Separación entre avatar y los íconos de me gusta y comentarios
-
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px; // Separación entre avatar y nombre de usuario
-    }
-
-    .user-details {
-      display: flex;
-      flex-direction: column;
-
-      .username {
-        font-weight: bold;
-      }
-
-      .description {
-        font-size: 12px;
-        color: #666;
-      }
-    }
-  }
+.coment{
+  margin-top: 18pt;
+  width: 40vh;
+  height: 68vh;
 }
 
-.actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 20px;
+@media (max-width: 530px) {
+  .actions{
+   position: fixed;
+   right: 45px;
+   color: white;
+  }
 
-  .likes, .comments {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px; // Separación entre íconos y números
-
-    i {
-      margin-right: 10px; // Separación entre íconos y texto
-      color: #ff0000; // Cambia el color a tu gusto
-      font-size: 24px; // Tamaño del ícono aumentado a 24px
-    }
-
-    span {
-      font-size: 16px; // Tamaño del número de me gusta y comentarios aumentado a 16px
-    }
+  .video{
+    width: 90vw;
+  height: 80vh
   }
 }

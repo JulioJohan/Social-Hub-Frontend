@@ -27,12 +27,14 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatMenuModule } from "@angular/material/menu";
 import { HeadertComponent } from './header/headert.component';
 import { PublicationstComponent } from './publications/publications.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
     TiktokComponent,
     HeadertComponent,
     PublicationstComponent,
+    CommentsComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,7 @@ import { PublicationstComponent } from './publications/publications.component';
     MatSelectModule,
     MatPseudoCheckboxModule,
     MatDatepickerModule,
-    // InputFileModule,
+    InputFileModule,
     MatProgressSpinnerModule
   ],
   exports:[TiktokComponent]

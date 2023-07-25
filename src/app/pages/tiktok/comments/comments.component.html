@@ -1,0 +1,28 @@
+<div class="text">
+  <p mat-dialog-title>
+    Comentarios
+    <button mat-icon-button mat-dialog-close class="icon" color="link">
+      <mat-icon> close </mat-icon>
+    </button>
+  </p>
+  <mat-dialog-content class="mat-typography"> comentarios </mat-dialog-content>
+  <mat-dialog-actions>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <textarea
+        matInput
+        type="text-area"
+        formControlName="descripcion"
+        placeholder="Escrive tu comentario"
+        rows="3"
+      ></textarea>
+
+      <div class="justify-content-end align-items-center d-flex">
+        <span>
+          <button mat-button>
+            <mat-icon>send</mat-icon>
+          </button>
+        </span>
+      </div>
+    </mat-form-field>
+  </mat-dialog-actions>
+</div>
