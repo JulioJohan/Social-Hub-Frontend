@@ -1,24 +1,106 @@
-<div class="tiktok-container">
-  <div class="video-info">
-    <div class="video-wrapper">
-      <!-- Aquí colocas el video o el reproductor de video -->
-    </div>
-    <div class="user-info">
-      <img src="ruta/a/tu/avatar.jpg" alt="Avatar del usuario" class="avatar">
-      <div class="user-details">
-        <p class="username">Nombre de usuario</p>
-        <p class="description">Descripción del usuario</p>
+
+<div class="container justify-content-center align-items-center text"  >
+  <div class="row">
+    
+    <div class="col ">
+      <div>
+        <div class="datU">
+          users data!!!
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+              <video controls class="video">
+                <!-- <source src="ruta_del_video.mp4" type="video/mp4" /> -->
+                <!-- También puedes agregar formatos de video adicionales como WebM o Ogg -->
+                <!-- <source src="ruta_del_video.webm" type="video/webm"> -->
+                <source src="ruta_del_video.ogv" type="video/ogg" />
+                Tu navegador no admite la etiqueta de video.
+              </video>
+              <div class="ms-2 actions">
+                <div class="text-center">
+                  <button mat-mini-fab color="link">
+                    <mat-icon
+                      matBadge="4"
+                      matBadgeOverlap="false"
+                      matBadgeColor="warn"
+                    >
+                      favorite
+                    </mat-icon>
+                  </button>
+                  <p>12k</p>
+                </div>
+                <div class="text-center">
+                  <button
+                    class="mt-2"
+                    mat-mini-fab
+                    color="link"
+                    (click)="comenOpen()"
+                  >
+                    <mat-icon
+                      matBadge="4"
+                      matBadgeOverlap="false"
+                      matBadgeColor="warn"
+                    >
+                      textsms
+                    </mat-icon>
+                  </button>
+                  <p>12k</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="actions">
-    <div class="likes">
-      <i class="fa fa-heart"></i>
-      <span>1000</span>
-    </div>
-    <div class="comments">
-      <i class="fa fa-comment"></i>
-      <span>500</span>
+      <div>
+        <div class="datU">
+          users data!!!
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+              <video controls class="video">
+                <!-- <source src="ruta_del_video.mp4" type="video/mp4" /> -->
+                <!-- También puedes agregar formatos de video adicionales como WebM o Ogg -->
+                <!-- <source src="ruta_del_video.webm" type="video/webm"> -->
+                <source src="ruta_del_video.ogv" type="video/ogg" />
+                Tu navegador no admite la etiqueta de video.
+              </video>
+              <div class="ms-2 actions">
+                <div class="text-center">
+                  <button mat-mini-fab color="link">
+                    <mat-icon
+                      matBadge="4"
+                      matBadgeOverlap="false"
+                      matBadgeColor="warn"
+                    >
+                      favorite
+                    </mat-icon>
+                  </button>
+                  <p>12k</p>
+                </div>
+                <div class="text-center">
+                  <button
+                    class="mt-2"
+                    mat-mini-fab
+                    color="link"
+                    (click)="comenOpen()"
+                  >
+                    <mat-icon
+                      matBadge="4"
+                      matBadgeOverlap="false"
+                      matBadgeColor="warn"
+                    >
+                      textsms
+                    </mat-icon>
+                  </button>
+                  <p>12k</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
