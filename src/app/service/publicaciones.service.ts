@@ -42,8 +42,15 @@ export class PublicacioneServices {
     return this.http.post<Response<Post>>(`${this.urlAdmin}/createPost/${tipePost}`, post, { headers: headers })
  }
 
- public updatePost(id:number,post:any): Observable<Response<Post>> {
-    return this.http.put<Response<Post>>(`${this.urlAdmin}/updatePost/${id}`, post, this.httpOptions)
+ public updatePost(tipo:number,post:any): Observable<Response<Post>> {
+    //HEADERS
+    let headers = new HttpHeaders();
+    headers = headers.append('enctype', 'multipart/form-data');
+    //fORM DATA
+    let formData= new FormData;
+    formData.append("description", post.description)
+    formData.append("idPost", post.idPost)  
+    return this.http.put<Response<Post>>(`${this.urlAdmin}/updatePost/${tipo}`, formData, {headers})
  }
 
  public deletePost(idPost:number): Observable<Response<Post>> {

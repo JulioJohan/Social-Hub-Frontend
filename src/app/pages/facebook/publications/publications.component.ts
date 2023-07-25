@@ -10,6 +10,8 @@ import { Utils } from 'src/app/shared/utils/utils';
 import { CommentsComponent } from './comments/comments.component';
 import { LoginService } from 'src/app/service/login.service';
 import { User } from 'src/app/models/user';
+import { AlertsService } from 'src/app/service/alerts.service';
+import { EditMyPostComponent } from '../edit-my-post/edit-my-post.component';
 
 
 @Component({
@@ -48,7 +50,9 @@ export class PublicationsComponent implements OnInit {
 
   constructor(private postService: PublicacioneServices,
     public dialog: MatDialog,
-    private authService: LoginService) { }
+    private authService: LoginService,
+    private alertsService: AlertsService
+  ) { }
 
   posts: Post[] =[];
 
@@ -202,5 +206,31 @@ export class PublicationsComponent implements OnInit {
     });
   }
 
+  //Elimina la publicacion
+  deletePost(id: any) {
+    this.postService.deletePost(id).subscribe({
+      next:(data)=>{
+        this.alertsService.succesMessage("", data.message);
+        this.getAllPostPage(0, 5);
+      },
+      error:(data) =>{
+        this.alertsService.errorMessage('',data.message);        
+      }     
+    })
+  }
+
+
+  editPost(id: any){
+    const modalRef = this.dialog.open(EditMyPostComponent, {
+      data:id,
+      maxWidth: "100vw",
+      maxHeight: "100vh",
+      panelClass: "full-screen-dialog-create-post",
+    });
+    modalRef.afterClosed().subscribe((result) => {
+      //Se cerro el dialog
+      this.getAllPostPage(0, 5);
+    });
+  }
 
 }
