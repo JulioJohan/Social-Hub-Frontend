@@ -28,6 +28,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { HeadertComponent } from './header/headert.component';
 import { PublicationstComponent } from './publications/publications.component';
 import { CommentsComponent } from './comments/comments.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CommentsComponent } from './comments/comments.component';
     HeadertComponent,
     PublicationstComponent,
     CommentsComponent,
+    CreatePostComponent,
   ],
   imports: [
     CommonModule,

@@ -28,6 +28,10 @@ export class PublicacioneServices {
   public findAllPostPage(page:number, size:number): Observable<Response<Post>> {
     return this.http.get<Response<Post>>(`${this.urlAdmin}/findAllPost/${page}/${size}`, this.httpOptions)
   }
+
+  public findAllPostTokTikPage(page:number, size:number): Observable<Response<Post>> {
+    return this.http.get<Response<Post>>(`${this.urlAdmin}/findAllPostToktik/${page}/${size}`, this.httpOptions)
+  }
   public findByIdPost(idPost:number): Observable<Response<Post>> {
     return this.http.get<Response<Post>>(`${this.urlAdmin}/findByIdPost/${idPost}`, this.httpOptions)
   }

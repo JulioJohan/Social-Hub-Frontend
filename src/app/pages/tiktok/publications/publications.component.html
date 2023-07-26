@@ -1,34 +1,35 @@
-
-<div class="container justify-content-center align-items-center text"  >
-  <div class="row">
-    
-    <div class="col ">
-      <div>
-        <div class="datU">
-          users data!!!
-        </div>
+<div class="container justify-content-center align-items-center text">
+  <div class="row" >
+    <div class="col" >
+      <div class="col d-flex justify-content-center align-items-center">
+        <button mat-raised-button color="primary" (click)="addPost()">Crear publicación</button>
+      </div>
+      <div *ngFor="let post of posts">
+        <div class="datU">{{post.user.name}}</div>
         <div class="card-body">
           <div class="row">
             <div class="col d-flex justify-content-center align-items-center">
-              <video controls class="video">
+              <video #videoElement controls class="video" (play)="onVideoPlay($event)">
                 <!-- <source src="ruta_del_video.mp4" type="video/mp4" /> -->
                 <!-- También puedes agregar formatos de video adicionales como WebM o Ogg -->
                 <!-- <source src="ruta_del_video.webm" type="video/webm"> -->
-                <source src="ruta_del_video.ogv" type="video/ogg" />
+                <source src="{{post.multimedia}}" type="video/ogg" />
                 Tu navegador no admite la etiqueta de video.
               </video>
               <div class="ms-2 actions">
                 <div class="text-center">
-                  <button mat-mini-fab color="link">
+                  <button mat-mini-fab color="link"
+                  [ngClass]="{'liked': post.liked}" 
+                      (click)="toggleLike(post)">
                     <mat-icon
-                      matBadge="4"
+                      matBadge="{{post.numLike}}"
                       matBadgeOverlap="false"
                       matBadgeColor="warn"
                     >
                       favorite
                     </mat-icon>
                   </button>
-                  <p>12k</p>
+                  <p>{{post.numLike}}</p>
                 </div>
                 <div class="text-center">
                   <button
@@ -52,55 +53,9 @@
           </div>
         </div>
       </div>
-      <div>
-        <div class="datU">
-          users data!!!
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col d-flex justify-content-center align-items-center">
-              <video controls class="video">
-                <!-- <source src="ruta_del_video.mp4" type="video/mp4" /> -->
-                <!-- También puedes agregar formatos de video adicionales como WebM o Ogg -->
-                <!-- <source src="ruta_del_video.webm" type="video/webm"> -->
-                <source src="ruta_del_video.ogv" type="video/ogg" />
-                Tu navegador no admite la etiqueta de video.
-              </video>
-              <div class="ms-2 actions">
-                <div class="text-center">
-                  <button mat-mini-fab color="link">
-                    <mat-icon
-                      matBadge="4"
-                      matBadgeOverlap="false"
-                      matBadgeColor="warn"
-                    >
-                      favorite
-                    </mat-icon>
-                  </button>
-                  <p>12k</p>
-                </div>
-                <div class="text-center">
-                  <button
-                    class="mt-2"
-                    mat-mini-fab
-                    color="link"
-                    (click)="comenOpen()"
-                  >
-                    <mat-icon
-                      matBadge="4"
-                      matBadgeOverlap="false"
-                      matBadgeColor="warn"
-                    >
-                      textsms
-                    </mat-icon>
-                  </button>
-                  <p>12k</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button mat-icon-button class="custom-button next" color="primary" (click)="loadMorePosts()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
     </div>
   </div>
 </div>
