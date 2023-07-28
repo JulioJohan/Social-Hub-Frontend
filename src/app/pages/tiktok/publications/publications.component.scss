@@ -1,37 +1,48 @@
 .example-header-image {
   background-size: cover;
 }
-.video{
+.video {
   width: 48vh;
   height: 85vh;
   border-radius: 10pt;
 }
 
-.coment{
+.coment {
   margin-top: 18pt;
   width: 40vh;
   height: 68vh;
 }
 
 @media (max-width: 530px) {
-  .actions{
-   position: absolute;
-   right: 45px;
-   color: white;
+  .actions {
+    position: absolute;
+    right: 45px;
+    color: white;
+  }
+  .vid {
+    display: none;
+  }
+  .video {
+    width: 90vw;
+    height: 70vh;
   }
 
-  .video{
-    width: 90vw;
-    height: 70vh
+  .imUser2 {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    display: block;
   }
-  .datU{
+
+  
+
+  .datU {
     margin-top: 20px;
     margin-left: 30px;
     color: white;
     position: absolute;
     z-index: 9999;
   }
-  
 }
 
 .liked {
@@ -63,4 +74,13 @@
   justify-content: center;
   cursor: pointer;
   font-size: 24px;
+}
+.imUser {
+  justify-content: center;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+}
+.imUser{
+  display: none;
 }
