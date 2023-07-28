@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { CommentsComponent } from '../comments/comments.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PublicacioneServices } from 'src/app/service/publicaciones.service';
 import { Post } from 'src/app/models/post.model';
 import { CreatePostComponent } from '../create-post/create-post.component';
@@ -40,13 +40,16 @@ export class PublicationstComponent implements OnInit {
   }
 
   // Método para abrir el diálogo de comentarios, se muestra un cuadro de diálogo con los comentarios del post seleccionado
-  comenOpen(){
-    const modalRef = this.dialog.open(CommentsComponent, {
-      // width: '1000px',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-       panelClass: 'full-screen-dialog-comment-tokTik',
-    });
+  comenOpen(post:Post){
+    // Objeto donde contiene las propiedad para el modal de comentarios
+    const matDialogConfig:MatDialogConfig  ={
+      maxWidth: '400vw',
+      maxHeight: '400vh',
+      panelClass: 'full-screen-dialog-comment-tokTik',      
+      data:post
+    }   
+    // Abriendo Modal
+    const modalRef = this.dialog.open(CommentsComponent,matDialogConfig);
     modalRef.afterClosed().subscribe(result=>{
       
     })

@@ -1,28 +1,98 @@
-<div class="text">
+<section>
+  <!-- <div class=""> -->
   <p mat-dialog-title>
     Comentarios
     <button mat-icon-button mat-dialog-close class="icon" color="link">
       <mat-icon> close </mat-icon>
     </button>
   </p>
-  <mat-dialog-content class="mat-typography"> comentarios </mat-dialog-content>
-  <mat-dialog-actions>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <textarea
-        matInput
-        type="text-area"
-        formControlName="descripcion"
-        placeholder="Escrive tu comentario"
-        rows="3"
-      ></textarea>
+  <!-- </div>  -->
+</section>
 
-      <div class="justify-content-end align-items-center d-flex">
-        <span>
-          <button mat-button>
-            <mat-icon>send</mat-icon>
+<!-- <mat-dialog-content class="mat-typography text">   -->
+<div class="col-md-12 col-lg-12 col-xs-12 scrollable-content">
+  <h2 *ngIf="comments.length === 0">
+    No hay comentario, se el primero en comentar
+  </h2>
+  <mat-card class="example-card" *ngFor="let comment of comments; ">
+    <div class="derecha" *ngIf="comment.user.idUser == user.id_user">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="toggleEditMode(comment)">
+            <mat-icon class="col-blue">cached</mat-icon>
+            <span>Editar</span>
           </button>
-        </span>
+          <button mat-menu-item (click)="deleteComment(comment)">
+            <mat-icon class="col-red">delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+        </mat-menu>
       </div>
-    </mat-form-field>
-  </mat-dialog-actions>
+    </div>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image" [style.background-image]="'url(' + comment.user.avatar + ')'">
+      </div>
+      <div>
+        <div class="text1 text-truncate">
+          {{ comment.user.name }} {{ comment.user.fatherLastName }}
+          {{ comment.user.motherLastName }}
+        </div>
+        <div>
+          {{comment.user.dateRegistration}}
+        </div>
+      </div>
+
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngIf="comment !== commentEdit; else editMode">
+        {{ comment.descripcion }}
+      </ng-container>
+      <ng-template #editMode>
+        <mat-form-field class="example-full-width">
+          <input matInput [(ngModel)]="editedDescription" />
+        </mat-form-field>
+        <div class="justify-content-end align-items-center d-flex input-with-image">
+          <button class="derecha" mat-button (click)="cancelEdit()">
+            Cancelar
+          </button>
+          <button class="derecha" [disabled]="editedDescription.length === 0" mat-button color="primary"
+            (click)="updateComment(comment)">
+            Comentar
+          </button>
+        </div>
+      </ng-template>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [ngClass]="{'liked': comment.liked}" mat-button (click)="toggleLikeComment(comment)">
+        <mat-icon matBadge="{{comment.numLike}}" matBadgeOverlap="false" matBadgeColor="warn">
+          {{comment.liked ? 'favorite' : 'favorite_border'}}
+        </mat-icon>
+      </button>
+    </mat-card-actions>
+    <mat-divider></mat-divider>
+  </mat-card>
 </div>
+<!-- </mat-dialog-content> -->
+
+<mat-dialog-actions>
+  <form [formGroup]="formComment" class="example-form">
+    <div class="input-with-image">
+      <img class="avatar" [src]="user.avatar">
+      <mat-form-field class="example-full-width">
+        <mat-label>Agrega un comentario...</mat-label>
+        <input matInput formControlName="descripction" />
+      </mat-form-field>
+    </div>
+    <div class="justify-content-end align-items-center d-flex">
+      <span>
+        <button mat-button mat-raised-button (click)="saveComment()" color="primary"
+          [disabled]="formComment.controls.descripction.value.length < 1">
+          Comentar
+        </button>
+      </span>
+    </div>
+  </form>
+</mat-dialog-actions>

@@ -1,6 +1,63 @@
 .icon {
-    float: right;
-    font-size: 24px;
-    background-color: whitesmoke;
+  float: right;
+  font-size: 24px;
+  background-color: whitesmoke;
+
+}
+
+.example-header-image{
+  background-size: cover;
   
-  }
+}  
+        
+button{
+  transition: .5s, color .10s;
+  -webkit-transition: .5s, color .10s;
+  -moz-transition: .5s, color .10s;
+  border-radius: 10%;
+}
+button:hover{
+  transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+  -moz-transform:translate(0px,5px);
+}
+   
+.avatar {
+  border-radius: 50%;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+  width: 50px;
+}
+
+.example-full-width {
+  width: 100%;
+  flex: 1; /* This makes the input field take up the remaining available space */
+}
+
+.input-with-image {
+  display: flex;
+  align-items: center; /* This centers the image and input vertically */
+}
+
+.example-form {
+  width: 95%;
+  // display: flex;
+  // align-items: center;
+}
+
+.derecha{ 
+  float: right;
+}
+
+.static-content {
+  /* Asegura que este contenido no se desplace */
+  flex: 0 0 auto; /* Esto evita que el contenido crezca o se encoja */
+  padding: 20px; /* Ajusta el espaciado según sea necesario */
+}
+
+.scrollable-content {
+  /* Permite que este contenido se desplace verticalmente */
+  overflow-y: auto; /* Muestra la barra de desplazamiento vertical si es necesario */
+  max-height: 350px; /* Establece una altura máxima para evitar que se desborde */
+}
