@@ -31,23 +31,24 @@ export class CommentsComponent implements OnInit {
   public post:Post;
   commentLikedMap: { [commentId: string]: boolean } = {};
 
-  // Editar
+  // Editar comentarios
   editingMode = false;
   commentEdit:Comment;
   editedDescription = '';
 
-
-
+  // Formulario para editar
   public formComment = this.formBuilder.group({
     descripction:['']
   })
 
   ngOnInit(): void {
+    // Al cargar el componente inicia la busqueda como el usuario
     this.findAllComments();
     this.getUser();
   }
 
-  findAllComments(){    
+  // Busca todos los comentarios por el post seleccionado
+  findAllComments(): void{    
     this.commentsService.findByPostComment(this.post.idPost).subscribe({
       next:(data)=>{
         console.log(data)
@@ -60,6 +61,7 @@ export class CommentsComponent implements OnInit {
     })
   }
   
+  // Obtiene todos los usuarios
   getUser(){
     const id = this.loginService.decodeToken();
     this.loginService.findById(id).subscribe({
@@ -73,11 +75,13 @@ export class CommentsComponent implements OnInit {
     })
   }
   
+  // Limpia el formulario despues de comentar
   clear(){
     this.formComment.reset()
   }
   
 
+  // Guarda el comentario
   saveComment(){
     const comment = new CommentDTO();
     comment.post = this.post.idPost;
@@ -96,6 +100,7 @@ export class CommentsComponent implements OnInit {
     })
   }
 
+  // Actualiza el comentario
   updateComment(comment:Comment){
     console.log(comment)
     const newComment = new CommentDTO();
@@ -119,6 +124,7 @@ export class CommentsComponent implements OnInit {
 
   }
 
+  // Elimina el comentario
   deleteComment(comment:Comment){
     this.commentsService.deleteComment(comment.idComment).subscribe({
       next:(data:any)=>{
@@ -132,6 +138,7 @@ export class CommentsComponent implements OnInit {
     })    
   }
 
+  // Likes de los comentarios para el backend
   likeComment(comment:Comment){
     this.commentsService.sumLike(comment.idComment).subscribe({
       next:(data:any) =>{
@@ -144,6 +151,7 @@ export class CommentsComponent implements OnInit {
     })
   }
 
+  // Quitar like del comentario seleccionado
   subtractLike(comment:Comment){
     this.commentsService.subtractLike(comment.idComment).subscribe({
       next:(data:any) =>{
@@ -156,13 +164,15 @@ export class CommentsComponent implements OnInit {
     })
   }
 
-  toggleEditMode(commentM:Comment) {
-    
+  // Esto nos ayuda a poner el comentario para editarlo
+  toggleEditMode(commentM:Comment) {    
     this.editingMode = true;    
+    // Busca el comentario para que solo tenga uno y asi poder editar solo uno
     this.commentEdit = this.comments.find(comment => comment.idComment === commentM.idComment);
     this.editedDescription = commentM.descripcion; // Initialize the edited description
   }
 
+  // Cancelacion del edit
   cancelEdit() {
     // Cancel editing and revert back to read-only mode
     this.editingMode = false;
@@ -171,7 +181,7 @@ export class CommentsComponent implements OnInit {
 
   }
 
-  likeStatus   = 'disliked';
+  // Agregando estilo para agregar y eliminar like
   toggleLikeComment(comment:any) {
     const commentId = comment.idComment;
     if (comment.liked) {
@@ -187,9 +197,9 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  // Cerrar el componente
   closeComments(){
     this.dialogRef.close();
   }
-
 
 }
