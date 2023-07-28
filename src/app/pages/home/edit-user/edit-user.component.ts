@@ -4,7 +4,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { User } from "src/app/models/user";
 import { LoginService } from "src/app/service/login.service";
 import Swal from "sweetalert2";
-
+import { AlertsService } from '../../../service/alerts.service';
 @Component({
   selector: "app-edit-user",
   templateUrl: "./edit-user.component.html",
@@ -20,7 +20,9 @@ export class EditUserComponent implements OnInit {
   constructor(
     private matDialogRef: MatDialogRef<EditUserComponent>,
     private authService: LoginService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private alertsService:AlertsService,
+
   ) {
     //construccion del formulario
     this.authForm = this.formBuilder.group({
@@ -135,5 +137,19 @@ export class EditUserComponent implements OnInit {
     } else {
       this.closeDialog();
     }
+  }
+  cambiar(){
+    const email:User={
+      email:this.data.email
+    }
+    this.authService.forgetPassword(email).subscribe(data=>{
+      if(data.ok){
+        this.matDialogRef.close()
+        this.alertsService.succesMessage('',data.msg);  
+      }
+      if(!data.ok){
+        this.alertsService.warningMessage(data.msg);
+      }
+    })
   }
 }

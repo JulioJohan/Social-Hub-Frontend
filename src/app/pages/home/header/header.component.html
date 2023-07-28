@@ -5,14 +5,14 @@
 >
   <div class="container-fluid">
     <div class="navbar-header">
-      <a
+      <!-- <a
         href="#"
         onClick="return false;"
         style="color: black"
         class="navbar-toggle collapsed"
         (click)="isNavbarCollapsed = !isNavbarCollapsed"
         aria-expanded="false"
-      ></a>
+      ></a> -->
       <a class="navbar-brand">
         <div class="row">
           <div class="col-1 menuC">
@@ -101,7 +101,7 @@
           ngbDropdown
           *ngIf="isNavbarCollapsed"
         >
-          <button
+          <!-- <button
             mat-icon-button
             [matMenuTriggerFor]="menu1"
             class="nav-notification-icons"
@@ -111,7 +111,7 @@
                 notifications
               </span></mat-icon
             >
-          </button>
+          </button> -->
         </li>
         <!-- #END# Notifications-->
         <li
@@ -125,7 +125,7 @@
             class="nav-notification-icons pt-0"
           >
             <img
-              [src]="data.avatar || ''"
+              [src]="data?.avatar || ''"
               class="user_img d-block imUser"
               alt="User"
             />
@@ -165,14 +165,14 @@
     <div class="nav-item btnNotification" ngbDropdown>
       <button
         mat-icon-button
-        [matMenuTriggerFor]="menu1"
+        [matMenuTriggerFor]="menu"
         class="nav-notification-icons"
       >
-        <mat-icon matBadge="4" matBadgeColor="warn"
-          ><span class="material-symbols-outlined">
-            notifications
-          </span></mat-icon
-        >
+      <img  [matMenuTriggerFor]="menu"
+      [src]="data?.avatar || ''"
+      class="user_img d-block imUser"
+      alt="User"
+    />
       </button>
     </div>
   </div>
@@ -187,7 +187,7 @@
   <button mat-menu-item style="width: 400px; color: black">
     <div>
       <img
-              [src]="data.avatar || ''"
+              [src]="data?.avatar || ''"
               class="user_img"
               alt="User"
             /> {{ data.name }}
@@ -196,7 +196,7 @@
   <button mat-menu-item style="width: 400px; color: black">
     <div>
       <img
-              [src]="data.avatar || ''"
+              [src]="data?.avatar || ''"
               class="user_img"
               alt="User"
             /> {{ data.name }}
@@ -205,7 +205,7 @@
   <button mat-menu-item style="width: 400px; color: black">
     <div>
       <img
-              [src]="data.avatar || ''"
+              [src]="data?.avatar || ''"
               class="user_img"
               alt="User"
             /> {{ data.name }}
