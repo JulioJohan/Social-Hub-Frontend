@@ -89,7 +89,7 @@
     <div class="justify-content-end align-items-center d-flex">
       <span>
         <button mat-button mat-raised-button (click)="saveComment()" color="primary"
-          [disabled]="formComment.controls.descripction.value.length < 1">
+          [disabled]="formComment.controls.descripction.value === null">
           Comentar
         </button>
       </span>

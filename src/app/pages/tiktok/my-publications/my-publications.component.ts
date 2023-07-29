@@ -167,6 +167,22 @@ export class MyPublicationstComponent implements OnInit {
     // console.log(event)
   }
 
+  // Método para abrir el diálogo de comentarios, se muestra un cuadro de diálogo con los comentarios del post seleccionado
+  comenOpen(post:Post){
+    // Objeto donde contiene las propiedad para el modal de comentarios
+    const matDialogConfig:MatDialogConfig  ={
+      maxWidth: '400vw',
+      maxHeight: '400vh',
+      panelClass: 'full-screen-dialog-comment-tokTik',      
+      data:post
+    }   
+    // Abriendo Modal
+    const modalRef = this.dialog.open(CommentsComponent,matDialogConfig);
+    modalRef.afterClosed().subscribe(result=>{
+      
+    })
+  }
+
   createPost() {
     const modalRef = this.dialog.open(CreatePostComponent, {
       // width: '1000px',nent
