@@ -29,6 +29,7 @@ import { HeadertComponent } from './header/headert.component';
 import { PublicationstComponent } from './publications/publications.component';
 import { CommentsComponent } from './comments/comments.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { MyPublicationstComponent } from './my-publications/my-publications.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     PublicationstComponent,
     CommentsComponent,
     CreatePostComponent,
+    MyPublicationstComponent
   ],
   imports: [
     CommonModule,

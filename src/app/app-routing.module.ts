@@ -12,6 +12,7 @@ import { PublicationsComponent } from "./pages/facebook/publications/publication
  
 
 import { MyPublicationsComponent } from "./pages/facebook/my-publications/my-publications.component";
+import { MyPublicationstComponent } from './pages/tiktok/my-publications/my-publications.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ const routes: Routes = [
         children: [
           { path: "", redirectTo: "public", pathMatch: "full" },
           { path: "public", component: PublicationstComponent },
+          { path: "myposts", component: MyPublicationstComponent}
       ],
     }  
     ],
