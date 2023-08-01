@@ -13,6 +13,7 @@ import { PublicationsComponent } from "./pages/facebook/publications/publication
 
 import { MyPublicationsComponent } from "./pages/facebook/my-publications/my-publications.component";
 import { MyPublicationstComponent } from './pages/tiktok/my-publications/my-publications.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -31,6 +32,8 @@ const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
+    canActivate:[AuthGuard],
+    canLoad:[AuthGuard],
     children: [
       { path: "", redirectTo: "select", pathMatch: "full" },
       { path: "select", component: SelectComponent },

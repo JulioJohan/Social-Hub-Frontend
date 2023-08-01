@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
@@ -16,11 +16,32 @@ export class LoginService {
   // Contructor para para la comunicación en el back ademas del router para derigirse a otra pagina
   constructor(private http: HttpClient, private router: Router) { }
 
+  private token = new BehaviorSubject<string>("");
+  private tokenData = new BehaviorSubject<any>({});
   public url: string = environment.servLogin
+
+  get token$():Observable<string>{
+    return this.token.asObservable();
+  }
+  get tokenData$():Observable<any>{
+    return this.tokenData.asObservable();
+  }
+
   // public fechaExpiracion: any;
 
   public guardarLocalStorage(token: string) {
     localStorage.setItem('token', token);
+  }
+
+  public checkToken(){
+    const token:string = localStorage.getItem('token');
+    console.log(token)
+    if(!token){
+      this.logout();
+    }   
+    this.token.next(token!);
+    console.log(this.token$)
+
   }
 
 
@@ -78,6 +99,7 @@ export class LoginService {
       // this.fechaExpiracion = jwt_decode(resp.msg)
       // localStorage.setItem('fechaExpiracion', this.fechaExpiracion.exp);
       //guardando token
+      this.token.next(resp.msg);
       this.guardarLocalStorage(resp.msg)
     }))
   }
@@ -106,6 +128,8 @@ export class LoginService {
   //Salir de la sesión con node js 
   logout() {
     //Remover el correo
+    this.token.next("");
+    this.tokenData.next(null);
     // localStorage.removeItem('token');
     localStorage.removeItem('token');
     // Cambiar la ruta 
