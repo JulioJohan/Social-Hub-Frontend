@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PublicationsComponent } from '../../facebook/publications/publications.component';
 
-import { PublicationsComponent } from './publications.component';
+
 
 describe('PublicationsComponent', () => {
   let component: PublicationsComponent;

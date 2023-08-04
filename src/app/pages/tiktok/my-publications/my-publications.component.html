@@ -15,13 +15,7 @@
                         <div
                           class="col d-flex justify-content-center align-items-center"
                         >
-                          <button
-                            mat-raised-button
-                            color="link"
-                            
-                          >
-                            Crear publicación
-                          </button>
+                          
                           <button
                             mat-raised-button
                             color="link"
@@ -32,6 +26,17 @@
                         </div>
                         <div *ngFor="let post of posts">
                           <div class="datU" style="width: 80vh">
+                            <div class="derecha">
+                              <button [matMenuTriggerFor]="menu"  mat-icon-button color="link">
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                                <mat-menu #menu="matMenu" class="">                       
+                                  <button mat-menu-item (click)="deletePost(post.idPost)">
+                                    <mat-icon>delete</mat-icon>
+                                    <span>Eliminar</span>
+                                  </button>
+                                </mat-menu>
+                            </div>
                             <div class="row">
                               <div class="col-1 vid">
                                 <img
@@ -112,7 +117,6 @@
                                         textsms
                                       </mat-icon>
                                     </button>
-                                    <p>12k</p>
                                   </div>
                                   <div class="text-center">
                                     <button
