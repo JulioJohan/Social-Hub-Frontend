@@ -11,6 +11,8 @@ export class AuthGuard implements CanActivate,CanLoad {
   constructor(private loginService:LoginService,
                private router:Router){}
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    this.loginService.checkToken();
+
     return this.loginService.token$.pipe(
       take(1),
       map((token:string) => {
@@ -35,7 +37,7 @@ export class AuthGuard implements CanActivate,CanLoad {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-
+    this.loginService.checkToken();
     //validar el token  
     return this.loginService.token$.pipe(
       take(1),

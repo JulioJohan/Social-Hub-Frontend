@@ -40,19 +40,21 @@ const routes: Routes = [
       {
         path: "bookface",
         component: FacebookComponent,
+        canActivate:[AuthGuard],
         children: [
           { path: "", redirectTo: "public", pathMatch: "full" },
-          { path: "public", component: PublicationsComponent },
-          { path: "myposts", component: MyPublicationsComponent }
+          { path: "public", component: PublicationsComponent, canActivate:[AuthGuard], },
+          { path: "myposts", component: MyPublicationsComponent, canActivate:[AuthGuard], }
         ],
       },
       { 
         path: "toktik", 
         component: TiktokComponent ,
+        canActivate:[AuthGuard],
         children: [
           { path: "", redirectTo: "public", pathMatch: "full" },
-          { path: "public", component: PublicationstComponent },
-          { path: "myposts", component: MyPublicationstComponent}
+          { path: "public", component: PublicationstComponent, canActivate:[AuthGuard], },
+          { path: "myposts", component: MyPublicationstComponent, canActivate:[AuthGuard],}
       ],
     }  
     ],
