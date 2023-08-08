@@ -66,7 +66,7 @@ export class MyPublicationsComponent implements OnInit {
 
   getAllPostPage() {
     // console.log(page, size)
-    this.postService.findByUserPost().subscribe({
+    this.postService.findByUserPost(1).subscribe({
       next: (data) => {
         this.posts = data.list; // Concatenar los nuevos posts al final del array existente
         this.cargando = false;

@@ -35,9 +35,9 @@ export class PublicacioneServices {
   public findByIdPost(idPost:number): Observable<Response<Post>> {
     return this.http.get<Response<Post>>(`${this.urlAdmin}/findByIdPost/${idPost}`, this.httpOptions)
   }
-  public findByUserPost(): Observable<Response<Post>> {
+  public findByUserPost(type:number): Observable<Response<Post>> {
     const idUser=this.authService.decodeToken()
-    return this.http.get<Response<Post>>(`${this.urlAdmin}/findByUserPost/${idUser}`, this.httpOptions)
+    return this.http.get<Response<Post>>(`${this.urlAdmin}/findByUserPost/${idUser}/${type}`, this.httpOptions)
   }
 
  public createPost(post:FormData,tipePost:number): Observable<Response<Post>> {
