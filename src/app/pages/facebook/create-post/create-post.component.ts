@@ -22,7 +22,7 @@ export class CreatePostComponent implements OnInit {
     public dialogRef: MatDialogRef<CreatePostComponent>
   ) {
     this.postForm = this.fb.group({
-      description: ["", [Validators.required]],
+      description: ["", [Validators.required, Validators.maxLength(255)]],
       multipartFile: [""],
     });
   }
@@ -32,6 +32,10 @@ export class CreatePostComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.postForm.get('description').valid)
+    if(!this.postForm.get('description').valid){
+      this.alertsService.errorMessage("", "La descripción es requerida")
+    }
     if (this.postForm.valid) {
       //Datos del formulario
       const postFile = this.postForm.value;
