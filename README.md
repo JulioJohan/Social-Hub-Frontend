@@ -1,6 +1,9 @@
-# Angularlight
+# Nombre del proyecto
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+Social-hub
+## Descargar 
+Ejecuta en la consola el siguiente comando.
+git clone 
 
 ## Development server
 
