@@ -1,8 +1,8 @@
-import { HttpClient, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
-
+import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { Respuesta } from '../models/respuesta';
 import { environment } from 'src/environments/environment';
@@ -16,11 +16,32 @@ export class LoginService {
   // Contructor para para la comunicación en el back ademas del router para derigirse a otra pagina
   constructor(private http: HttpClient, private router: Router) { }
 
+  private token = new BehaviorSubject<string>("");
+  private tokenData = new BehaviorSubject<any>({});
   public url: string = environment.servLogin
+
+  get token$():Observable<string>{
+    return this.token.asObservable();
+  }
+  get tokenData$():Observable<any>{
+    return this.tokenData.asObservable();
+  }
+
   // public fechaExpiracion: any;
 
   public guardarLocalStorage(token: string) {
     localStorage.setItem('token', token);
+  }
+
+  public checkToken(){
+    const token:string = localStorage.getItem('token');
+    console.log(token)
+    if(!token){
+      this.logout();
+    }   
+    this.token.next(token!);
+    console.log(this.token$)
+
   }
 
 
@@ -35,7 +56,11 @@ export class LoginService {
   }
 
     // Comunicación para actualizar el usuario con node
-  public updateUser(id: number, user: User): Observable<User> {
+  public updateUser( user: User): Observable<User> {
+
+    let headers = new HttpHeaders();
+  headers = headers.append('enctype', 'multipart/form-data');
+    const id = this.decodeToken()
     const formData = new FormData();
     formData.append('name', user.name);
     formData.append('email', user.email);
@@ -48,7 +73,8 @@ export class LoginService {
     formData.append('age', user.age);
     formData.append('date_birth', user.date_birth);
     formData.append('avatar', user.avatar);
-    return this.http.put<User>(`${this.url}/users/updateUser/${id}`, user);
+    
+    return this.http.put<User>(`${this.url}/users/updateUser/${id}`, formData,{headers:headers});
   }
 
   // Comunicación para eliminar el usuario con node
@@ -62,8 +88,10 @@ export class LoginService {
       email: email,
       password: password
     }
-    return this.http.post(`${this.url}/login`, formularioData);
-  }
+    return this.http.post(`${this.url}/login/`, formularioData).pipe(tap((resp:any)=>{
+
+    }))
+}
 
   // Comunicación para la implementación del login 
   public doubleAuthentication(usuario: any) {
@@ -71,6 +99,7 @@ export class LoginService {
       // this.fechaExpiracion = jwt_decode(resp.msg)
       // localStorage.setItem('fechaExpiracion', this.fechaExpiracion.exp);
       //guardando token
+      this.token.next(resp.msg);
       this.guardarLocalStorage(resp.msg)
     }))
   }
@@ -99,13 +128,21 @@ export class LoginService {
   //Salir de la sesión con node js 
   logout() {
     //Remover el correo
+    this.token.next("");
+    this.tokenData.next(null);
     // localStorage.removeItem('token');
     localStorage.removeItem('token');
     // Cambiar la ruta 
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/auth/signin');
   }
 
+  //decodificar token
+  decodeToken():number{
+    const token =localStorage.getItem('token')
+    const decodedToken: any = jwt_decode.default(token);
+    return decodedToken.uid
 
+  }
 
 }
 

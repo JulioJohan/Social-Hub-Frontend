@@ -1,0 +1,52 @@
+.card{
+    background-color:#ecf0f4;
+    height: 100%;
+  
+    // border:2px solid rgba(0, 0, 0, 0.721) ;
+  }
+  
+  
+  .example-card {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  
+  
+  .example-header-image {
+    background-size: cover;
+  }
+  
+  .postText{
+    font-size: larger;
+  }
+  
+  .liked {
+    background-color: blue;
+    color: white;
+  }
+  
+  .imagenPost{
+    border-radius: 10px;
+    margin: 10px 2px;
+    max-width: 100%; /* Ajusta el tamaño máximo de la imagen según tus necesidades */
+    height: auto;
+    object-fit: contain; 
+  }
+  
+  .scrollClass {
+    height: 85.2vh;
+    max-width: 100%;
+    overflow: auto;
+  }
+  
+  .spinner{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+  }
+  
+
+  .derecha{ 
+    float: right;
+  }

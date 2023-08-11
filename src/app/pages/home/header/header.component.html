@@ -1,38 +1,39 @@
-<nav #navbar class="navbar active">
+<nav
+  #navbar
+  class="navbar active text"
+  style="background-color: rgb(255, 255, 255); color: black"
+>
   <div class="container-fluid">
     <div class="navbar-header">
-      <a
+      <!-- <a
         href="#"
         onClick="return false;"
+        style="color: black"
         class="navbar-toggle collapsed"
         (click)="isNavbarCollapsed = !isNavbarCollapsed"
         aria-expanded="false"
-      ></a>
-      <a
-        href="#"
-        onClick="return false;"
-        class="bars"
-        (click)="mobileMenuSidebarOpen($event, 'overlay-open')"
-      ></a>
-      
+      ></a> -->
       <a class="navbar-brand">
         <div class="row">
           <div class="col-1 menuC">
-                <button
-                  mat-icon-button
-                  style="margin-top: -5px;"
-                  aria-label="Example icon-button with menu icon"
-                  (click)="callSidemenuCollapse()"
-                >
-                  <mat-icon>menu</mat-icon>
-                </button>
+            <button
+              mat-icon-button
+              style="margin-top: -2px"
+              aria-label="Example icon-button with menu icon"
+              (click)="callSidemenuCollapse()"
+            >
+              <mat-icon>menu</mat-icon>
+            </button>
           </div>
-          <div class="col">
-            <img src="assets/images/logo.png" alt="" />
-        <span class="logo-name">Kuber</span>
+          <div
+            routerLink="/home"
+            class="col logoNetworks d-flex align-items-center justify-content-center"
+            style="margin-top: -15px; cursor: pointer"
+          >
+            <img src="assets/images/media.png" />
+            <span class="logo-name text" style="color: black">Social hub</span>
           </div>
         </div>
-        
       </a>
     </div>
 
@@ -95,107 +96,119 @@
           </div>
         </li>
         <!-- #START# Notifications-->
-        <li class="nav-item btnNotification" ngbDropdown>
-          <button
+        <li
+          class="nav-item btnNotification"
+          ngbDropdown
+          *ngIf="isNavbarCollapsed"
+        >
+          <!-- <button
             mat-icon-button
-            ngbDropdownToggle
+            [matMenuTriggerFor]="menu1"
             class="nav-notification-icons"
           >
-            <mat-icon
+            <mat-icon matBadge="4" matBadgeColor="warn"
               ><span class="material-symbols-outlined">
                 notifications
               </span></mat-icon
             >
-            <span class="label-count bg-orange"></span>
-          </button>
-          <div ngbDropdownMenu class="notification-dropdown pullDown">
-            <div
-              class="noti-list"
-              style="position: relative; max-width: 600px; max-height: 350px"
-            >
-              <ul class="menu">
-                <li class="nfc-header">
-                  <h5 class="mb-0">Notitications</h5>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    *ngFor="let notification of notifications"
-                    onClick="return false;"
-                    [ngClass]="[notification.status]"
-                  >
-                    <span class="table-img msg-user">
-                      <i
-                        class="material-icons-two-tone nfc-type-icon"
-                        [ngClass]="[notification.color]"
-                        >{{ notification.icon }}</i
-                      >
-                    </span>
-                    <span class="menu-info">
-                      <span class="menu-title">{{ notification.message }}</span>
-                      <span class="menu-desc mt-2">
-                        <i class="material-icons">access_time</i>
-                        {{ notification.time }}
-                      </span>
-                    </span>
-                    <span class="nfc-close">
-                      <app-feather-icons
-                        [icon]="'x'"
-                        [class]="'user-menu-icons'"
-                      ></app-feather-icons>
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          </button> -->
         </li>
         <!-- #END# Notifications-->
-        <li class="nav-item user_profile btnUserDropdown" ngbDropdown>
+        <li
+          class="nav-item user_profile btnUserDropdown"
+          [matMenuTriggerFor]="menu"
+          ngbDropdown
+        >
           <div
             class="chip dropdown-toggle"
             ngbDropdownToggle
             class="nav-notification-icons pt-0"
           >
             <img
-              src="{{ userImg }}"
-              class="user_img"
-              width="32"
-              height="32"
+              [src]="data?.avatar || ''"
+              class="user_img d-block imUser"
               alt="User"
             />
-            <span>Ella Jones</span>
+            <span>{{ data.name }}</span>
           </div>
-          <div ngbDropdownMenu class="notification-dropdown pullDown">
-            <div
-              class="noti-list"
-              style="position: relative; max-width: 600px; max-height: 300px"
-            >
-              <ul class="menu">
-                <li class="body">
-                  <ul class="user_dw_menu">
-                    <li>
-                      <a href="#" onClick="return false;"> Account </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick="return false;"> Inbox </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick="return false;"> Settings </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);" (click)="logout()">
-                        Logout
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
+
+          <mat-menu #menu="matMenu" class="text">
+            <button mat-menu-item (click)="openEdirUser()">
+              <mat-icon>manage_accounts</mat-icon>
+              <span>Perfil</span>
+            </button>
+            <button mat-menu-item  routerLink="/home/bookface/myposts">
+              <mat-icon>record_voice_over</mat-icon>
+              <span>Mis Publicasiones Bookface</span>
+            </button>
+            <button mat-menu-item >
+              <mat-icon>record_voice_over</mat-icon>
+              <span>Mis Publicasiones Toktik</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>feedback</mat-icon>
+              <span>Terminos y Condiciones</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Salir</span>
+            </button>
+            <br style="font-size: 1pt" />
+            <div class="text-center">v 1.0.0</div>
+          </mat-menu>
         </li>
         <!-- #END# Tasks -->
       </ul>
     </div>
   </div>
+  <div class="circle text-center menuC">
+    <div class="nav-item btnNotification" ngbDropdown>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        class="nav-notification-icons"
+      >
+      <img  [matMenuTriggerFor]="menu"
+      [src]="data?.avatar || ''"
+      class="user_img d-block imUser"
+      alt="User"
+    />
+      </button>
+    </div>
+  </div>
 </nav>
+<mat-menu #menu1="matMenu">
+  <div
+    class="text-center"
+    style="background-color: rgb(143, 136, 248); margin-top: -8px"
+  >
+    <h2>Notificaciones</h2>
+  </div>
+  <button mat-menu-item style="width: 400px; color: black">
+    <div>
+      <img
+              [src]="data?.avatar || ''"
+              class="user_img"
+              alt="User"
+            /> {{ data.name }}
+    </div>
+  </button>
+  <button mat-menu-item style="width: 400px; color: black">
+    <div>
+      <img
+              [src]="data?.avatar || ''"
+              class="user_img"
+              alt="User"
+            /> {{ data.name }}
+    </div>
+  </button>
+  <button mat-menu-item style="width: 400px; color: black">
+    <div>
+      <img
+              [src]="data?.avatar || ''"
+              class="user_img"
+              alt="User"
+            /> {{ data.name }}
+    </div>
+  </button>
+</mat-menu>

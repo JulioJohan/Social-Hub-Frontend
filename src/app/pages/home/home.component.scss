@@ -1,38 +1,11 @@
 .c1 {
-  width: 270px;
-  height: 93vh;
+  width: 265px;
+  height: 90vh;
   background-color: white;
+  overflow-x: hidden;
 }
 
-.c2 {
-  width: 70px;
-  height: 93vh;
-  background-color: white;
-}
 
-.inicio-animacion {
-  transition: width 0.5s ease;
-}
-
-.inicio-animacion {
-  transition: width 0.5s ease;
-}
-.bcw {
-  background-color: white;
-}
-.menuC {
-  display: none;
-}
-@media (max-width: 767px) {
-  .menu {
-    display: none;
-  }
-}
-@media (min-width: 768px) {
-  .menuCe {
-    display: none;
-  }
-}
 .imOrVideoP {
   display: flex;
   justify-content: center;
@@ -57,4 +30,10 @@
 .contLogoNet:hover{
   background-color: rgba(169, 169, 169, 0.76);
   cursor: pointer;
+}
+
+.bt{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

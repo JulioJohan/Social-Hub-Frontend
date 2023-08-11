@@ -1,0 +1,109 @@
+<div class="container justify-content-center align-items-center text">
+  <div class="row">
+    <div class="col">
+      <div class="col d-flex justify-content-center align-items-center">
+        <button mat-raised-button color="link" (click)="addPost()">
+          Crear publicación
+        </button>
+        <button mat-raised-button color="link" routerLink="/home/toktik/myposts" >
+          Mis publicaciones
+        </button>
+      </div>
+      <div *ngFor="let post of posts">
+        <div class="datU" style="width: 80vh">
+          <div class="row">
+            <div class="col-1 vid">
+              <img
+                [src]="post.user.avatar || ''"
+                class="user_img d-block imUser"
+                alt="User"
+              />
+            </div>
+            <div class="col">
+              <h5 style="font-weight: bolder">
+                {{ post.user.name }} {{ post.user.fatherLastName }}
+                {{ post.user.motherLastName }}
+              </h5>
+              <h6 style="font-weight: bolder">
+                {{ post.description }}
+              </h6>
+            </div>
+          </div>
+          <!-- <div  class="col-1" style="background-color: aqua; width: 40px; height: 40px; border-radius: 50%;">
+
+          </div>
+          <div class="col">
+            <mat-card-header>
+            <div mat-card-avatar
+              style="background-image:url('{{post.user.avatar}}')"></div>
+            <mat-card-title>{{post.user.name}} {{post.user.fatherLastName}} {{post.user.motherLastName}}
+            </mat-card-title>
+            
+          </mat-card-header>
+        {{post.dateRegistration | date: 'dd-MMMM-yyyy'}} -->
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+              <video autoplay
+                #videoElement
+                controls
+                class="video"
+                (play)="onVideoPlay($event)"
+              >
+                <source src="{{ post.multimedia }}" type="video/ogg" />
+                Tu navegador no admite la etiqueta de video.
+              </video>
+              <div class="ms-2 actions">
+                <div class="text-center">
+                  <button
+                    mat-mini-fab
+                    color="link"
+                    [ngClass]="{ liked: post.liked }"
+                    (click)="toggleLike(post)"
+                  >
+                    <mat-icon matBadgeOverlap="false" matBadgeColor="warn">
+                      favorite
+                    </mat-icon>
+                  </button>
+                  <p>{{ post.numLike }}</p>
+                </div>
+                <div class="text-center">
+                  <button
+                    class="mt-2"
+                    mat-mini-fab
+                    color="link"
+                    (click)="comenOpen(post)"
+                  >
+                    <mat-icon matBadgeOverlap="false" matBadgeColor="warn">
+                      textsms
+                    </mat-icon>
+                  </button>
+                 <p></p>
+                </div>
+                <div class="text-center">
+                  <button mat-icon-button color="link" class="btnIm d-block align-items-center justify-content-center ">
+                    <img
+                    [src]="post.user.avatar || ''"
+                    class="user_img  imUser2"
+                    alt="User"
+                  />
+                  </button>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        mat-icon-button
+        class="custom-button next"
+        color="primary"
+        (click)="loadMorePosts()"
+      >
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -12,3 +12,22 @@
         display: none;
       }
   }
+  .imUser {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+  
+  }
+  
+  .circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    bottom: auto;
+    top: 5px;
+    right: 0px;
+    position:absolute;
+  }
+  

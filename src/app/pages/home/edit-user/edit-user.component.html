@@ -1,0 +1,121 @@
+<div class="container text">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="contenedor">
+      <button
+        class="elemento"
+        mat-mini-fab
+        color="secondary"
+        (click)="closeDialog()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <h2 class="text-center card-header">Perfil de usuario</h2>
+    
+  </div>
+  
+
+ 
+  <form [formGroup]="authForm"
+  (ngSubmit)="actionButton()">
+    <div class=" mt-5 d-flex align-items-center justify-content-center">
+      <div class="contImg " (click)="seleccImg()">
+        <img [src]="imgAct" alt="Imagen" *ngIf="imgAct" />
+        <input type="file" [disabled]="action ==='Editar'" #fileInput style="display: none" (change)="cargarImagen($event)" />
+      </div>
+    </div>
+    <div class="card-header">Datos personales</div>
+    <div class="row mt-5">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nombre del usuario</mat-label>
+          <input [disabled]="action === 'Editar'" matInput formControlName="name" required />
+          <mat-error *ngIf="authForm.get('name').hasError('required')">
+            El nombre del usuario es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Apellido Materno</mat-label>
+          <input matInput formControlName="mothersLastName" required />
+          <mat-error
+            *ngIf="authForm.get('mothersLastName').hasError('required')"
+          >
+            El apellido materno es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Apellido paterno</mat-label>
+          <input matInput formControlName="fatherLastName" required />
+          <mat-error
+            *ngIf="authForm.get('fatherLastName').hasError('required')"
+          >
+            El apellido paterno es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required />
+          <mat-error *ngIf="authForm.get('email').hasError('required')">
+            El email es requerido
+          </mat-error>
+          <mat-error *ngIf="authForm.get('email').hasError('email')">
+            El email ingresado no es válido
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Edad</mat-label>
+          <input matInput type="number" formControlName="age" required />
+          <mat-error *ngIf="authForm.get('age').hasError('required')">
+            La edad es requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input
+            matInput
+            type="date"
+            formControlName="dateBirth"
+            required
+          />
+          <mat-error
+            *ngIf="authForm.get('dateBirth').hasError('required')"
+          >
+            La fecha de nacimiento es requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <a mat-icon-button (click)="cambiar()">Cambiar contraseña</a>
+    </div>
+    <div class="row justify-content-end mt-5">
+      <div class="col-4">
+        <button mat-raised-button type="button" (click)="closeAction() ">Cancelar</button>
+      </div>
+      <div class="col-4">
+        <button mat-raised-button type="submit" color="primary" >{{ action }}</button>
+      </div>
+    </div>
+  </form>
+</div>
