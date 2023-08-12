@@ -3,8 +3,8 @@ Es un proyecto nos permite crear dos redes sociales una para video y otra para t
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tuusuario/turepositorio.git
-cd turepositorio
+git https://github.com/JulioJohan/Social-Hub-Frontend.git)https://github.com/JulioJohan/Social-Hub-Frontend.git
+cd Social-Hub-Frontend
 
 # Instalar dependencias
 npm install
