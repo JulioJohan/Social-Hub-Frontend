@@ -1,30 +1,29 @@
-# Nombre del proyecto
+# Nombre del Proyecto
+'Social hub'
+Es un proyecto nos permite crear dos redes sociales una para video y otra para texto
 
-Social-hub
-## Descargar 
-Ejecuta en la consola el siguiente comando.
-git clone https://github.com/JulioJohan/Social-Hub-Frontend.git
+## Tabla de Contenidos
 
-## Development server
+- [Requisitos Previos](#requisitos-previos)
+- [Configuración](#configuración)
+- [Uso](#uso)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Contribución](#contribución)
+- [Licencia](#licencia)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Requisitos Previos
 
-## Code scaffolding
+Enumera los requisitos previos necesarios antes de comenzar a configurar el proyecto. Puede incluir software, herramientas, versiones específicas, configuraciones, etc.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Configuración
 
-## Build
+Proporciona instrucciones detalladas para configurar el proyecto en un entorno local. Asegúrate de incluir todos los pasos necesarios, como clonar el repositorio, instalar dependencias, configurar variables de entorno, etc.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+# Clonar el repositorio
+git clone https://github.com/tuusuario/turepositorio.git
+cd turepositorio
 
-## Running unit tests
+# Instalar dependencias
+npm install
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
