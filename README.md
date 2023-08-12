@@ -9,3 +9,10 @@ cd Social-Hub-Frontend
 # Instalar dependencias
 npm install
 
+# Ejecutar en desarrollo
+ng s
+
+#Crear despliege
+ng build
+
+
