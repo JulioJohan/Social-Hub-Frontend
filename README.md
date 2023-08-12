@@ -15,4 +15,7 @@ ng s
 #Crear despliege
 ng build
 
+#Especificaciones de angular
+Angular cli v14.0
+
 
