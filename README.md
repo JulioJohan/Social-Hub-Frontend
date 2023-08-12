@@ -1,5 +1,4 @@
-# Nombre del Proyecto
-'Social hub'
+# Social hub
 Es un proyecto nos permite crear dos redes sociales una para video y otra para texto
 
 ## Tabla de Contenidos
