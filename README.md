@@ -3,7 +3,7 @@
 Social-hub
 ## Descargar 
 Ejecuta en la consola el siguiente comando.
-git clone 
+git clone https://github.com/JulioJohan/Social-Hub-Frontend.git
 
 ## Development server
 
