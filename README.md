@@ -16,6 +16,7 @@ ng s
 ng build
 
 #Especificaciones de angular
-Angular cli v14.0
+Angular cli V14
+Node js V18
 
 
