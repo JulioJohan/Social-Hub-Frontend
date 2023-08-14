@@ -136,7 +136,7 @@ export class CommentsComponent implements OnInit {
         console.log(this.user)       
       },
       error:(error)=>{
-        this.alertsService.errorMessage('Upps','Hubo un error insesperado');
+        this.alertsService.errorMessage('Error','Hubo un error inesperado');
       }
     })
   }

@@ -60,7 +60,7 @@ export class DialogSigninComponent implements OnInit {
   checkFormCompletion() {
 
     if (this.codeAuthForm.valid) {
-      // Obtenemos cada caracter del modal
+      // Obtenemos cada carácter del modal
       const { code1, code2, code3, code4, code5, code6, code7, code8 } = this.codeAuthForm.value
       // Contruimos el token
       const token = `${code1}`

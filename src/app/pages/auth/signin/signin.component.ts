@@ -69,7 +69,7 @@ export class SigninComponent
         return;
       }
       if(data.ok){
-        this.alertsService.succesMessage('El código de verificación se envio a tu correo!',data.msg);
+        this.alertsService.succesMessage('El código de verificación se envió a tu correo!',data.msg);
         this.loading = false;
         this.openDialogC()  
       }

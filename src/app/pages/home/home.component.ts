@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     private serviceMenu: MenuService,
     private authService: LoginService
   ) {
-    //Optiene si se dio clic en el menu para extender el menu
+    //Obtiene si se dio clic en el menu para extender el menu
     this.serviceMenu.listen().subscribe((event: any) => {
       this.closeMenu()
     });
@@ -35,11 +35,11 @@ export class HomeComponent implements OnInit {
  
   ngOnInit(): void {
   }
-  //Nos permite salir de la aplicacion
+  //Nos permite salir de la aplicación
   onLogut() {
     this.authService.logout();
   }
-  //Nos permite esconder el menú cuando está en un telefono
+  //Nos permite esconder el menú cuando está en un teléfono
   closeMenu() {
     this.drawer.toggle();
   }

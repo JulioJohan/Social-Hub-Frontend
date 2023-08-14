@@ -83,11 +83,11 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-  //metodo que permite que el contenedor pueda aprir el explorador para subir la imagen
+  //método que permite que el contenedor pueda abrir el explorador para subir la imagen
   seleccImg() {
     this.fileInput.nativeElement.click();
   }
-  //Metodo que para realisar las acciones del frmulario
+  //Método que para realizar las acciones del formulario
   actionButton() {
     if (this.action == "Editar") {
       this.authForm.enable();
@@ -105,7 +105,7 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-  //metodo que guardar los cambios realizados en su perfil
+  //método que guardar los cambios realizados en su perfil
   seveEdit() {
     const data = this.authForm.value;
     const dataUser: User = {

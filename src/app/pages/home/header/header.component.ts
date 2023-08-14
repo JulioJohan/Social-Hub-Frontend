@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit{
   ];
  
   ngOnInit() {
-    //Optiene si se dio clic en el menu para extender el menu
+    //Obtiene si se dio clic en el menu para extender el menu
     this.serviseMenu.listen().subscribe((event: any) => {
       this.menuOpen = event.event;
     });
@@ -152,12 +152,12 @@ export class HeaderComponent implements OnInit{
 
   }
 
-  //Metodo para salir de la web
+  //Método para salir de la web
   logout() {
     this.authService.logout();
   }
 
-  //optener los datos del usuario desde el token
+  //obtener los datos del usuario desde el token
   uId(){
     const uid = this.authService.decodeToken();
     this.authService.findById(uid).subscribe((data:any) => {

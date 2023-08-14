@@ -118,7 +118,7 @@ export class MyPublicationsComponent implements OnInit {
       windowBottom >= containerScrollHeight - 1 &&
       containerScrollTop > this.scrollPosition
     ) {
-      //Agregando animacion de scroll
+      //Agregando animación de scroll
 
       this.scrollPosition = containerScrollTop;
       clearTimeout(this.loadPostsTimeout);
@@ -200,7 +200,7 @@ export class MyPublicationsComponent implements OnInit {
     const modalRef = this.dialog.open(CommentsComponent, dialogConfig);
   }
 
-  //optener los datos del usuario desde el token
+  //obtener los datos del usuario desde el token
   uId() {
     const uid = this.authService.decodeToken();
     this.authService.findById(uid).subscribe((data: any) => {

@@ -36,13 +36,13 @@ export class ChangePasswordComponent implements OnInit {
         cpassword: ['', Validators.required,this.checkPasswords],
       });
     // get return url from route parameters or default to '/'
-    // Totma los parametros de nuestr URL
+    // Toma los parámetros de nuestra URL
     this.tokenPassword = this.route.snapshot.paramMap.get('tokenPassword')!;
     // Verificamos en el Backend
     this.checkTokenPassword(this.tokenPassword);
   }
 
-  // Metodo para checar el token 
+  // Método para checa el token 
   checkTokenPassword(token:string){
     this.loginService.checkTokenPassword(token).subscribe(data=>{
       console.log(data)
@@ -98,7 +98,7 @@ export class ChangePasswordComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.authForm.valid) {   
-      // Enviamos la peticion al back 
+      // Enviamos la petición al back 
       this.loginService.newPassword(this.tokenPassword,this.authForm.value).subscribe(data=>{
         if(data){
           this.alertsService.succesMessage('Felicidades',data.msg);

@@ -44,14 +44,14 @@ export class CreatePostComponent implements OnInit {
       //Se crea un objeto de tipo File para manejar la imagen
       let imagenFile: File = new File([], "");
 
-      //Se valida que la imgane se haya subido al input en caso de que no se pone como null
+      //Se valida que la imagen se haya subido al input en caso de que no se pone como null
       if (postFile.multipartFile != "") {
         imagenFile = postFile.multipartFile[0].file;
       } else {
         imagenFile = null;
       }
 
-      // Crear instancia de FormData y agregar propiedades del publicacion a enviar
+      // Crear instancia de FormData y agregar propiedades del publicación a enviar
       const formData = new FormData();
       formData.append("description", postFile.description);
       //SE valida si la imagen existe
@@ -59,7 +59,7 @@ export class CreatePostComponent implements OnInit {
         formData.append("multipartFile", imagenFile);
       }
       formData.append("user", this.idUser.toString());
-      //Se envia 0 indicando que es una publicacion de bookface
+      //Se envía 0 indicando que es una publicación de bookface
       this.publicacioneServices.createPost(formData, 0).subscribe({
         next: (data) => {
           this.alertsService.succesMessage("Publicación", data.message);

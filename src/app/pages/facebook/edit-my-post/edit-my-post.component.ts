@@ -31,7 +31,7 @@ export class EditMyPostComponent implements OnInit {
   ngOnInit(): void {
     this.agregarDta()
   }
-  //Nos permite optener los datos del post
+  //Nos permite obtener los datos del post
   agregarDta(){
     this.publicacioneServices.findByIdPost(this.data).subscribe({next:data=>{
       const dataAnte={
@@ -43,7 +43,7 @@ export class EditMyPostComponent implements OnInit {
   }
   onSubmit() {
     const dataNew=this.postForm.value
-    //Se envia 0 indicando que es una publicacion de bookface
+    //Se envía 0 indicando que es una publicación de bookface
     this.publicacioneServices.updatePost(0,dataNew).subscribe({
       next: (data) => {
         console.log(data)
