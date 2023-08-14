@@ -11,7 +11,7 @@ export class CommentsService {
 
   constructor(private http:HttpClient) { }
 
-  private urlAdmin = "http://18.220.73.90:8081/comment";
+  private urlAdmin = "https://18.220.73.90/backend/comment";
 
   private httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),

@@ -9,7 +9,7 @@ import { LoginService } from "./login.service";
   providedIn: "root",
 })
 export class PublicacioneServices {
-  private urlAdmin = "http://18.220.73.90:8081/post";
+  private urlAdmin = "https://18.220.73.90/backend/post";
   private httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };

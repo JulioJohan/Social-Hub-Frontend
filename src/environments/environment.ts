@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: "https://18.220.73.90",
-  servLogin: "http://18.220.73.90:3000/api"
+  servLogin: "https://18.220.73.90/backendlogin/api"
 };
 
 /*
