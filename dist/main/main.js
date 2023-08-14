@@ -1023,6 +1023,7 @@ class SigninComponent extends src_app_shared_UnsubscribeOnDestroyAdapter__WEBPAC
             this.loading = false;
         }, error => {
             console.log(error);
+            this.loading = false;
         });
         // this.openDialogC()  
         // this.submitted = true;
@@ -5429,7 +5430,7 @@ __webpack_require__.r(__webpack_exports__);
 class CommentsService {
     constructor(http) {
         this.http = http;
-        this.urlAdmin = "http://localhost:8081/comment";
+        this.urlAdmin = "http://18.220.73.90:8081/comment";
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpHeaders({ "Content-Type": "application/json" }),
         };
@@ -5711,7 +5712,7 @@ class PublicacioneServices {
     constructor(http, authService) {
         this.http = http;
         this.authService = authService;
-        this.urlAdmin = "http://localhost:8081/post";
+        this.urlAdmin = "http://18.220.73.90:8081/post";
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({ "Content-Type": "application/json" }),
         };
@@ -6109,8 +6110,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    apiUrl: "http://localhost:4200",
-    servLogin: "http://localhost:3000/api"
+    apiUrl: "https://18.220.73.90",
+    servLogin: "http://18.220.73.90:3000/api"
 };
 /*
  * For easier debugging in development mode, you can import the following file
